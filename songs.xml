@@ -1,92 +1,84 @@
 <object-stream>
   <list>
     <models.Song>
-      <songTitle>Grocery list</songTitle>
-      <songPriority>3</songPriority>
-      <songCategory>Shopping</songCategory>
-      <isSongArchived>false</isSongArchived>
+      <songTitle>Smooth</songTitle>
+      <songRating>3</songRating>
+      <songGenre>Latin</songGenre>
+      <isSongExplicit>false</isSongExplicit>
       <updatedAt>2023-03-10T10:00:00</updatedAt>
       <createdAt>2023-03-10T10:00:00</createdAt>
     </models.Song>
     <models.Song>
-      <songTitle>Meeting agenda</songTitle>
-      <songPriority>1</songPriority>
-      <songCategory>Work</songCategory>
-      <isSongArchived>false</isSongArchived>
+      <songTitle>Lose Yourself</songTitle>
+      <songRating>1</songRating>
+      <songGenre>Hip Hop</songGenre>
+      <isSongExplicit>false</isSongExplicit>
       <updatedAt>2023-03-12T15:30:00</updatedAt>
       <createdAt>2023-03-11T13:00:00</createdAt>
     </models.Song>
     <models.Song>
-      <songTitle>Birthday party ideas</songTitle>
-      <songPriority>2</songPriority>
-      <songCategory>Personal</songCategory>
-      <isSongArchived>false</isSongArchived>
+      <songTitle>Ain&apos;t No Mountain High Enough</songTitle>
+      <songRating>2</songRating>
+      <songGenre>Soul</songGenre>
+      <isSongExplicit>false</isSongExplicit>
       <updatedAt>2023-03-14T18:45:00</updatedAt>
       <createdAt>2023-03-14T17:30:00</createdAt>
     </models.Song>
     <models.Song>
-      <songTitle>Workout plan</songTitle>
-      <songPriority>4</songPriority>
-      <songCategory>Health</songCategory>
-      <isSongArchived>false</isSongArchived>
+      <songTitle>Highway to Hell</songTitle>
+      <songRating>4</songRating>
+      <songGenre>Rock</songGenre>
+      <isSongExplicit>false</isSongExplicit>
       <updatedAt>2023-03-09T11:30:00</updatedAt>
       <createdAt>2023-03-09T11:00:00</createdAt>
     </models.Song>
     <models.Song>
-      <songTitle>Books to read</songTitle>
-      <songPriority>5</songPriority>
-      <songCategory>Entertainment</songCategory>
-      <isSongArchived>true</isSongArchived>
+      <songTitle>Sweet Child o&apos; Mine</songTitle>
+      <songRating>5</songRating>
+      <songGenre>Rock</songGenre>
+      <isSongExplicit>true</isSongExplicit>
       <updatedAt>2023-03-08T12:15:00</updatedAt>
       <createdAt>2023-03-08T12:00:00</createdAt>
     </models.Song>
     <models.Song>
-      <songTitle>Travel itinerary</songTitle>
-      <songPriority>1</songPriority>
-      <songCategory>Travel</songCategory>
-      <isSongArchived>false</isSongArchived>
+      <songTitle>Livin&apos; on a Prayer</songTitle>
+      <songRating>1</songRating>
+      <songGenre>Rock</songGenre>
+      <isSongExplicit>false</isSongExplicit>
       <updatedAt>2023-03-10T20:00:00</updatedAt>
       <createdAt>2023-03-10T19:30:00</createdAt>
     </models.Song>
     <models.Song>
-      <songTitle>Recipes to try</songTitle>
-      <songPriority>3</songPriority>
-      <songCategory>Cooking</songCategory>
-      <isSongArchived>true</isSongArchived>
+      <songTitle>Billie Jean</songTitle>
+      <songRating>3</songRating>
+      <songGenre>Pop</songGenre>
+      <isSongExplicit>true</isSongExplicit>
       <updatedAt>2023-03-11T14:00:00</updatedAt>
       <createdAt>2023-03-11T13:45:00</createdAt>
     </models.Song>
     <models.Song>
-      <songTitle>Project milestones</songTitle>
-      <songPriority>1</songPriority>
-      <songCategory>Work</songCategory>
-      <isSongArchived>false</isSongArchived>
+      <songTitle>The Power of Love</songTitle>
+      <songRating>1</songRating>
+      <songGenre>Pop</songGenre>
+      <isSongExplicit>false</isSongExplicit>
       <updatedAt>2023-03-15T16:00:00</updatedAt>
       <createdAt>2023-03-15T14:30:00</createdAt>
     </models.Song>
     <models.Song>
-      <songTitle>Weekend trip packing list</songTitle>
-      <songPriority>2</songPriority>
-      <songCategory>Travel</songCategory>
-      <isSongArchived>false</isSongArchived>
+      <songTitle>Sweet Home Alabama</songTitle>
+      <songRating>2</songRating>
+      <songGenre>Country</songGenre>
+      <isSongExplicit>false</isSongExplicit>
       <updatedAt>2023-03-12T17:15:00</updatedAt>
       <createdAt>2023-03-12T16:45:00</createdAt>
     </models.Song>
     <models.Song>
-      <songTitle>Car maintenance schedule</songTitle>
-      <songPriority>4</songPriority>
-      <songCategory>Personal</songCategory>
-      <isSongArchived>false</isSongArchived>
+      <songTitle>Enter Sandman</songTitle>
+      <songRating>4</songRating>
+      <songGenre>Metal</songGenre>
+      <isSongExplicit>false</isSongExplicit>
       <updatedAt>2023-03-14T10:30:00</updatedAt>
       <createdAt>2023-03-14T10:00:00</createdAt>
-    </models.Song>
-    <models.Song>
-      <songTitle>Movies to watch</songTitle>
-      <songPriority>5</songPriority>
-      <songCategory>Entertainment</songCategory>
-      <isSongArchived>true</isSongArchived>
-      <updatedAt>2023-03-10T22:00:00</updatedAt>
-      <createdAt>2023-03-10T21:30:00</createdAt>
     </models.Song>
   </list>
 </object-stream>

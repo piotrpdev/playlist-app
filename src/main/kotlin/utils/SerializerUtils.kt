@@ -43,17 +43,16 @@ object SerializerUtils {
     fun getSeededSongs(): ArrayList<Song> {
         val songs = ArrayList<Song>()
 
-        songs.add(Song("Grocery list", 3, "Shopping", false, ldp("2023-03-10T10:00"), ldp("2023-03-10T10:00")))
-        songs.add(Song("Meeting agenda", 1, "Work", false, ldp("2023-03-12T15:30"), ldp("2023-03-11T13:00")))
-        songs.add(Song("Birthday party ideas", 2, "Personal", false, ldp("2023-03-14T18:45"), ldp("2023-03-14T17:30")))
-        songs.add(Song("Workout plan", 4, "Health", false, ldp("2023-03-09T11:30"), ldp("2023-03-09T11:00")))
-        songs.add(Song("Books to read", 5, "Entertainment", true, ldp("2023-03-08T12:15"), ldp("2023-03-08T12:00")))
-        songs.add(Song("Travel itinerary", 1, "Travel", false, ldp("2023-03-10T20:00"), ldp("2023-03-10T19:30")))
-        songs.add(Song("Recipes to try", 3, "Cooking", true, ldp("2023-03-11T14:00"), ldp("2023-03-11T13:45")))
-        songs.add(Song("Project milestones", 1, "Work", false, ldp("2023-03-15T16:00"), ldp("2023-03-15T14:30")))
-        songs.add(Song("Weekend trip packing list", 2, "Travel", false, ldp("2023-03-12T17:15"), ldp("2023-03-12T16:45")))
-        songs.add(Song("Car maintenance schedule", 4, "Personal", false, ldp("2023-03-14T10:30"), ldp("2023-03-14T10:00")))
-        songs.add(Song("Movies to watch", 5, "Entertainment", true, ldp("2023-03-10T22:00"), ldp("2023-03-10T21:30")))
+        songs.add(Song("Smooth", 3, "Latin", false, ldp("2023-03-10T10:00"), ldp("2023-03-10T10:00")))
+        songs.add(Song("Lose Yourself", 1, "Hip Hop", false, ldp("2023-03-12T15:30"), ldp("2023-03-11T13:00")))
+        songs.add(Song("Ain't No Mountain High Enough", 2, "Soul", false, ldp("2023-03-14T18:45"), ldp("2023-03-14T17:30")))
+        songs.add(Song("Highway to Hell", 4, "Rock", false, ldp("2023-03-09T11:30"), ldp("2023-03-09T11:00")))
+        songs.add(Song("Sweet Child o' Mine", 5, "Rock", true, ldp("2023-03-08T12:15"), ldp("2023-03-08T12:00")))
+        songs.add(Song("Livin' on a Prayer", 1, "Rock", false, ldp("2023-03-10T20:00"), ldp("2023-03-10T19:30")))
+        songs.add(Song("Billie Jean", 3, "Pop", true, ldp("2023-03-11T14:00"), ldp("2023-03-11T13:45")))
+        songs.add(Song("The Power of Love", 1, "Pop", false, ldp("2023-03-15T16:00"), ldp("2023-03-15T14:30")))
+        songs.add(Song("Sweet Home Alabama", 2, "Country", false, ldp("2023-03-12T17:15"), ldp("2023-03-12T16:45")))
+        songs.add(Song("Enter Sandman", 4, "Metal", false, ldp("2023-03-14T10:30"), ldp("2023-03-14T10:00")))
 
         return songs
     }

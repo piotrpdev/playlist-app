@@ -23,12 +23,12 @@ class ValidatorUtilsTest {
     }
 
     @Test
-    fun testSongPriorityIsValid() {
-        assertTrue(ValidatorUtils.songPriorityIsValid("1"))
-        assertTrue(ValidatorUtils.songPriorityIsValid("5"))
-        assertFalse(ValidatorUtils.songPriorityIsValid("0"))
-        assertFalse(ValidatorUtils.songPriorityIsValid("6"))
-        assertFalse(ValidatorUtils.songPriorityIsValid(null))
+    fun testSongRatingIsValid() {
+        assertTrue(ValidatorUtils.songRatingIsValid("1"))
+        assertTrue(ValidatorUtils.songRatingIsValid("5"))
+        assertFalse(ValidatorUtils.songRatingIsValid("0"))
+        assertFalse(ValidatorUtils.songRatingIsValid("6"))
+        assertFalse(ValidatorUtils.songRatingIsValid(null))
     }
 
     @Test
@@ -62,8 +62,8 @@ class ValidatorUtilsTest {
     fun testPropertyNameToPrompt() {
         assertEquals("Enter song title: ", ValidatorUtils.propertyNameToPrompt("songTitle", null))
         assertEquals(
-            "Enter song priority (1-low, 2, 3, 4, 5-high): ",
-            ValidatorUtils.propertyNameToPrompt("songPriority", null)
+            "Enter song rating (1-low, 2, 3, 4, 5-high): ",
+            ValidatorUtils.propertyNameToPrompt("songRating", null)
         )
         assertThrows(IllegalArgumentException::class.java) {
             ValidatorUtils.propertyNameToPrompt(

@@ -53,9 +53,9 @@ class SongAPI(serializerType: Serializer) {
      */
     fun updateSong(indexToUpdate: Int, song: Song): Boolean = findSong(indexToUpdate)?.apply {
         songTitle = song.songTitle
-        songPriority = song.songPriority
-        songCategory = song.songCategory
-        isSongArchived = song.isSongArchived
+        songRating = song.songRating
+        songGenre = song.songGenre
+        isSongExplicit = song.isSongExplicit
         updatedAt = LocalDateTime.now()
     } != null
 
@@ -63,10 +63,10 @@ class SongAPI(serializerType: Serializer) {
      * Archives a song at a given index.
      *
      * @param indexToUpdate The index of the song to archive.
-     * @return True if the song was archived successfully, false otherwise.
+     * @return True if the song was explicit successfully, false otherwise.
      */
     fun archiveSong(indexToUpdate: Int): Boolean = findSong(indexToUpdate)?.apply {
-        isSongArchived = true
+        isSongExplicit = true
         updatedAt = LocalDateTime.now()
     } != null
 
@@ -86,34 +86,34 @@ class SongAPI(serializerType: Serializer) {
         generateAllSongsTable().renderText(border = TextBorder.ROUNDED)
 
     /**
-     * Lists all active (non-archived) songs in a formatted string.
+     * Lists all safe (non-explicit) songs in a formatted string.
      *
-     * @return A formatted string with all active songs or a message indicating no active songs stored.
+     * @return A formatted string with all safe songs or a message indicating no safe songs stored.
      */
-    fun listActiveSongs(): String = if (songs.isEmpty() || numberOfActiveSongs() == 0) "No active songs stored"
+    fun listSafeSongs(): String = if (songs.isEmpty() || numberOfSafeSongs() == 0) "No safe songs stored"
     else
-        generateMultipleSongsTable(songs.filter { song -> !song.isSongArchived }).renderText(border = TextBorder.ROUNDED)
+        generateMultipleSongsTable(songs.filter { song -> !song.isSongExplicit }).renderText(border = TextBorder.ROUNDED)
 
 
     /**
-     * Lists all archived songs in a formatted string.
+     * Lists all explicit songs in a formatted string.
      *
-     * @return A formatted string with all archived songs or a message indicating no archived songs stored.
+     * @return A formatted string with all explicit songs or a message indicating no explicit songs stored.
      */
-    fun listArchivedSongs(): String = if (songs.isEmpty() || numberOfArchivedSongs() == 0) "No archived songs stored"
+    fun listExplicitSongs(): String = if (songs.isEmpty() || numberOfExplicitSongs() == 0) "No explicit songs stored"
     else
-        generateMultipleSongsTable(songs.filter { song -> song.isSongArchived }).renderText(border = TextBorder.ROUNDED)
+        generateMultipleSongsTable(songs.filter { song -> song.isSongExplicit }).renderText(border = TextBorder.ROUNDED)
 
     /**
-     * Lists all songs with a given priority in a formatted string.
+     * Lists all songs with a given rating in a formatted string.
      *
-     * @param priority The priority to filter songs by.
-     * @return A formatted string with all songs of the selected priority or a message indicating no songs with the specified priority.
+     * @param rating The rating to filter songs by.
+     * @return A formatted string with all songs of the selected rating or a message indicating no songs with the specified rating.
      */
-    fun listSongsBySelectedPriority(priority: Int): String =
-        if (songs.isEmpty() || numberOfSongsByPriority(priority) == 0) "No songs with priority"
+    fun listSongsBySelectedRating(rating: Int): String =
+        if (songs.isEmpty() || numberOfSongsByRating(rating) == 0) "No songs with rating"
         else
-            generateMultipleSongsTable(songs.filter { song -> song.songPriority == priority }).renderText(border = TextBorder.ROUNDED)
+            generateMultipleSongsTable(songs.filter { song -> song.songRating == rating }).renderText(border = TextBorder.ROUNDED)
 
     /**
      * Lists all songs that haven't been updated in a given number of days.
@@ -126,35 +126,35 @@ class SongAPI(serializerType: Serializer) {
         generateMultipleSongsTable(songs.filter { song -> song.updatedAt.isBefore(LocalDateTime.now().minusDays(days.toLong())) }.sortedBy { it.updatedAt }).renderText(border = TextBorder.ROUNDED)
 
     /**
-     * Lists songs with a priority of 1.
+     * Lists songs with a rating of 5.
      *
      * @return A formatted string with all important songs or a message indicating no important songs stored.
      */
     fun listImportantSongs(): String = if (songs.isEmpty() || numberOfImportantSongs() == 0) "No important songs stored"
     else
-        generateMultipleSongsTable(songs.filter { song -> song.songPriority == 1 }).renderText(border = TextBorder.ROUNDED)
+        generateMultipleSongsTable(songs.filter { song -> song.songRating == 5 }).renderText(border = TextBorder.ROUNDED)
 
     /**
-     * Retrieves the number of archived songs.
+     * Retrieves the number of explicit songs.
      *
-     * @return The number of archived songs.
+     * @return The number of explicit songs.
      */
-    fun numberOfArchivedSongs(): Int = songs.count { it.isSongArchived }
+    fun numberOfExplicitSongs(): Int = songs.count { it.isSongExplicit }
 
     /**
-     * Retrieves the number of active (non-archived) songs.
+     * Retrieves the number of safe (non-explicit) songs.
      *
-     * @return The number of active songs.
+     * @return The number of safe songs.
      */
-    fun numberOfActiveSongs(): Int = songs.count { !it.isSongArchived }
+    fun numberOfSafeSongs(): Int = songs.count { !it.isSongExplicit }
 
     /**
-     * Retrieves the number of songs with a given priority.
+     * Retrieves the number of songs with a given rating.
      *
-     * @param priority The priority to filter songs by.
-     * @return The number of songs with the specified priority.
+     * @param rating The rating to filter songs by.
+     * @return The number of songs with the specified rating.
      */
-    fun numberOfSongsByPriority(priority: Int): Int = songs.count { it.songPriority == priority }
+    fun numberOfSongsByRating(rating: Int): Int = songs.count { it.songRating == rating }
 
     /**
      * Retrieves the number of songs that haven't been updated in a given number of days.
@@ -165,11 +165,11 @@ class SongAPI(serializerType: Serializer) {
     fun numberOfStaleSongs(days: Int): Int = songs.count { it.updatedAt.isBefore(LocalDateTime.now().minusDays(days.toLong())) }
 
     /**
-     * Retrieves the number of songs with a priority of 1.
+     * Retrieves the number of songs with a rating of 1.
      *
      * @return The number of important songs.
      */
-    fun numberOfImportantSongs(): Int = songs.count { it.songPriority == 1 }
+    fun numberOfImportantSongs(): Int = songs.count { it.songRating == 1 }
 
     /**
      * Retrieves the total number of songs.

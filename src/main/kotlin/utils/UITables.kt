@@ -127,15 +127,15 @@ object UITables {
             }
             row {
                 cell("2")
-                cell("List Active Songs")
+                cell("List Safe Songs")
             }
             row {
                 cell("3")
-                cell("List Archived Songs")
+                cell("List Explicit Songs")
             }
             row {
                 cell("4")
-                cell("List Songs by Priority")
+                cell("List Songs by Rating")
             }
             row {
                 cell("5")
@@ -198,13 +198,13 @@ object UITables {
                 cell("Title") {
                     alignment = TextAlignment.MiddleCenter
                 }
-                cell("Priority") {
+                cell("Rating") {
                     alignment = TextAlignment.MiddleCenter
                 }
-                cell("Category") {
+                cell("Genre") {
                     alignment = TextAlignment.MiddleCenter
                 }
-                cell("Archived") {
+                cell("Explicit") {
                     alignment = TextAlignment.MiddleCenter
                 }
                 cell("Updated At") {
@@ -224,9 +224,9 @@ object UITables {
                         }
                     }
                     cell(it.songTitle) {}
-                    cell(it.songPriority.toString()) {}
-                    cell(it.songCategory) {}
-                    cell(if (it.isSongArchived) "Yes" else "No") {}
+                    cell(it.songRating.toString()) {}
+                    cell(it.songGenre) {}
+                    cell(if (it.isSongExplicit) "Yes" else "No") {}
                     cell(it.updatedAt.toString()) {}
                     cell(it.createdAt.toString()) {}
                     if (index == data.size - 1) {
