@@ -12,7 +12,7 @@ object ValidatorUtils {
     fun intIsValid(int: String?): Boolean = stringIsValid(int) && int!!.toIntOrNull() != null
 
     @JvmStatic
-    fun notePriorityIsValid(priority: String?): Boolean = intIsValid(priority) && priority!!.toInt() in 1..5
+    fun songPriorityIsValid(priority: String?): Boolean = intIsValid(priority) && priority!!.toInt() in 1..5
 
     @JvmStatic
     fun yesNoIsValid(isArchived: String?): Boolean = stringIsValid(isArchived) && isArchived!!.toCharArray()[0].lowercase() in arrayOf("y", "n")
@@ -42,14 +42,14 @@ object ValidatorUtils {
     @JvmStatic
     fun propertyNameToPrompt(propertyName: String, oldPropertyValue: Any?): String {
         return when (propertyName) {
-            "noteTitle" -> "Enter note title${def(oldPropertyValue)}: "
-            "notePriority" -> "Enter note priority (1-low, 2, 3, 4, 5-high)${def(oldPropertyValue)}: "
-            "noteCategory" -> "Enter note category${def(oldPropertyValue)}: "
-            "isNoteArchived" -> "Enter note archived status (y/n)${def(oldPropertyValue)}: "
-            "updatedAt" -> "Enter note updated at (e.g. 2023-03-09T11:30:00)${def(oldPropertyValue)}: "
-            "createdAt" -> "Enter note created at (e.g. 2023-03-09T11:30:00)${def(oldPropertyValue)}: "
-            "staleDays" -> "Show notes that haven't been updated in this many days: "
-            "noteIndex" -> "Enter note index: "
+            "songTitle" -> "Enter song title${def(oldPropertyValue)}: "
+            "songPriority" -> "Enter song priority (1-low, 2, 3, 4, 5-high)${def(oldPropertyValue)}: "
+            "songCategory" -> "Enter song category${def(oldPropertyValue)}: "
+            "isSongArchived" -> "Enter song archived status (y/n)${def(oldPropertyValue)}: "
+            "updatedAt" -> "Enter song updated at (e.g. 2023-03-09T11:30:00)${def(oldPropertyValue)}: "
+            "createdAt" -> "Enter song created at (e.g. 2023-03-09T11:30:00)${def(oldPropertyValue)}: "
+            "staleDays" -> "Show songs that haven't been updated in this many days: "
+            "songIndex" -> "Enter song index: "
             else -> throw IllegalArgumentException("Invalid property name: $propertyName")
         }
     }
@@ -57,14 +57,14 @@ object ValidatorUtils {
     @JvmStatic
     fun propertyNameToError(propertyName: String): String {
         return when (propertyName) {
-            "noteTitle" -> "Error: note title was invalid. Please enter a string"
-            "notePriority" -> "Error: note priority was invalid. Please enter an integer between 1 and 5"
-            "noteCategory" -> "Error: note category was invalid. Please enter a string"
-            "isNoteArchived" -> "Error: note archived status was invalid. Please enter either 'y' or 'n'"
-            "updatedAt" -> "Error: note updated at was invalid. Please enter a valid date and time (e.g. 2023-03-09T11:30:00)"
-            "createdAt" -> "Error: note created at was invalid. Please enter a valid date and time (e.g. 2023-03-09T11:30:00)"
+            "songTitle" -> "Error: song title was invalid. Please enter a string"
+            "songPriority" -> "Error: song priority was invalid. Please enter an integer between 1 and 5"
+            "songCategory" -> "Error: song category was invalid. Please enter a string"
+            "isSongArchived" -> "Error: song archived status was invalid. Please enter either 'y' or 'n'"
+            "updatedAt" -> "Error: song updated at was invalid. Please enter a valid date and time (e.g. 2023-03-09T11:30:00)"
+            "createdAt" -> "Error: song created at was invalid. Please enter a valid date and time (e.g. 2023-03-09T11:30:00)"
             "staleDays" -> "Error: invalid number of days. Please enter a valid positive integer."
-            "noteIndex" -> "Error: invalid note index. Please enter a valid positive integer."
+            "songIndex" -> "Error: invalid song index. Please enter a valid positive integer."
             "yesNo" -> "Error: invalid input. Please enter either 'y' or 'n'."
             else -> throw IllegalArgumentException("Invalid property name: $propertyName")
         }
@@ -73,10 +73,10 @@ object ValidatorUtils {
     @JvmStatic
     fun propertyNameToValidator(propertyName: String): (String?) -> Boolean {
         return when (propertyName) {
-            "noteTitle" -> ::stringIsValid
-            "notePriority" -> ::notePriorityIsValid
-            "noteCategory" -> ::stringIsValid
-            "isNoteArchived" -> ::yesNoIsValid
+            "songTitle" -> ::stringIsValid
+            "songPriority" -> ::songPriorityIsValid
+            "songCategory" -> ::stringIsValid
+            "isSongArchived" -> ::yesNoIsValid
             "updatedAt" -> ::localDateTimeIsValid
             "createdAt" -> ::localDateTimeIsValid
             "staleDays" -> ::staleDaysIsValid

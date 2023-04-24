@@ -6,7 +6,7 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLMapper
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.KotlinFeature
 import com.fasterxml.jackson.module.kotlin.KotlinModule
-import models.Note
+import models.Song
 import utils.SerializerUtils.isArrayList
 import java.io.File
 
@@ -15,7 +15,7 @@ import java.io.File
 class YAMLSerializer(private val file: File) : Serializer {
 
     @Throws(Exception::class)
-    override fun read(): ArrayList<Note>? {
+    override fun read(): ArrayList<Song>? {
         val mapper: ObjectMapper = YAMLMapper()
         mapper.registerModule(
             KotlinModule.Builder()
@@ -28,14 +28,14 @@ class YAMLSerializer(private val file: File) : Serializer {
                 .build()
         ).registerModule(JavaTimeModule())
 
-        val obj = mapper.readValue(file, object : TypeReference<ArrayList<Note?>?>() {})!!
+        val obj = mapper.readValue(file, object : TypeReference<ArrayList<Song?>?>() {})!!
 
         return isArrayList(obj)
     }
 
 
     @Throws(Exception::class)
-    override fun write(obj: ArrayList<Note>) {
+    override fun write(obj: ArrayList<Song>) {
         val mapper: ObjectMapper = YAMLMapper()
         mapper.registerModule(
             KotlinModule.Builder()

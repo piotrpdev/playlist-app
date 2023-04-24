@@ -1,7 +1,7 @@
 package utils
 
-import controllers.NoteAPI
-import models.Note
+import controllers.SongAPI
+import models.Song
 import persistence.JSONSerializer
 import persistence.XMLSerializer
 import persistence.YAMLSerializer
@@ -9,7 +9,7 @@ import java.io.File
 import java.time.LocalDateTime
 
 /**
- * An object containing utility functions for serialization and deserialization of notes, as well as generating seed data.
+ * An object containing utility functions for serialization and deserialization of songs, as well as generating seed data.
  */
 object SerializerUtils {
     /**
@@ -21,41 +21,41 @@ object SerializerUtils {
     fun ldp(s: String): LocalDateTime = LocalDateTime.parse(s)
 
     /**
-     * Checks if the given object is an ArrayList of Note objects.
+     * Checks if the given object is an ArrayList of Song objects.
      *
      * @param obj The object to be checked.
-     * @return The ArrayList of Note objects if the given object is of the correct type, null otherwise.
+     * @return The ArrayList of Song objects if the given object is of the correct type, null otherwise.
      */
     @JvmStatic
-    fun isArrayList(obj: Any): ArrayList<Note>? = if (obj is ArrayList<*> && obj.all { it is Note }) {
+    fun isArrayList(obj: Any): ArrayList<Song>? = if (obj is ArrayList<*> && obj.all { it is Song }) {
         @Suppress("UNCHECKED_CAST")
-        obj as ArrayList<Note>
+        obj as ArrayList<Song>
     } else {
         null
     }
 
     /**
-     * Returns an ArrayList of Note objects containing seeded data.
+     * Returns an ArrayList of Song objects containing seeded data.
      *
-     * @return The ArrayList of seeded Note objects.
+     * @return The ArrayList of seeded Song objects.
      */
     @JvmStatic
-    fun getSeededNotes(): ArrayList<Note> {
-        val notes = ArrayList<Note>()
+    fun getSeededSongs(): ArrayList<Song> {
+        val songs = ArrayList<Song>()
 
-        notes.add(Note("Grocery list", 3, "Shopping", false, ldp("2023-03-10T10:00"), ldp("2023-03-10T10:00")))
-        notes.add(Note("Meeting agenda", 1, "Work", false, ldp("2023-03-12T15:30"), ldp("2023-03-11T13:00")))
-        notes.add(Note("Birthday party ideas", 2, "Personal", false, ldp("2023-03-14T18:45"), ldp("2023-03-14T17:30")))
-        notes.add(Note("Workout plan", 4, "Health", false, ldp("2023-03-09T11:30"), ldp("2023-03-09T11:00")))
-        notes.add(Note("Books to read", 5, "Entertainment", true, ldp("2023-03-08T12:15"), ldp("2023-03-08T12:00")))
-        notes.add(Note("Travel itinerary", 1, "Travel", false, ldp("2023-03-10T20:00"), ldp("2023-03-10T19:30")))
-        notes.add(Note("Recipes to try", 3, "Cooking", true, ldp("2023-03-11T14:00"), ldp("2023-03-11T13:45")))
-        notes.add(Note("Project milestones", 1, "Work", false, ldp("2023-03-15T16:00"), ldp("2023-03-15T14:30")))
-        notes.add(Note("Weekend trip packing list", 2, "Travel", false, ldp("2023-03-12T17:15"), ldp("2023-03-12T16:45")))
-        notes.add(Note("Car maintenance schedule", 4, "Personal", false, ldp("2023-03-14T10:30"), ldp("2023-03-14T10:00")))
-        notes.add(Note("Movies to watch", 5, "Entertainment", true, ldp("2023-03-10T22:00"), ldp("2023-03-10T21:30")))
+        songs.add(Song("Grocery list", 3, "Shopping", false, ldp("2023-03-10T10:00"), ldp("2023-03-10T10:00")))
+        songs.add(Song("Meeting agenda", 1, "Work", false, ldp("2023-03-12T15:30"), ldp("2023-03-11T13:00")))
+        songs.add(Song("Birthday party ideas", 2, "Personal", false, ldp("2023-03-14T18:45"), ldp("2023-03-14T17:30")))
+        songs.add(Song("Workout plan", 4, "Health", false, ldp("2023-03-09T11:30"), ldp("2023-03-09T11:00")))
+        songs.add(Song("Books to read", 5, "Entertainment", true, ldp("2023-03-08T12:15"), ldp("2023-03-08T12:00")))
+        songs.add(Song("Travel itinerary", 1, "Travel", false, ldp("2023-03-10T20:00"), ldp("2023-03-10T19:30")))
+        songs.add(Song("Recipes to try", 3, "Cooking", true, ldp("2023-03-11T14:00"), ldp("2023-03-11T13:45")))
+        songs.add(Song("Project milestones", 1, "Work", false, ldp("2023-03-15T16:00"), ldp("2023-03-15T14:30")))
+        songs.add(Song("Weekend trip packing list", 2, "Travel", false, ldp("2023-03-12T17:15"), ldp("2023-03-12T16:45")))
+        songs.add(Song("Car maintenance schedule", 4, "Personal", false, ldp("2023-03-14T10:30"), ldp("2023-03-14T10:00")))
+        songs.add(Song("Movies to watch", 5, "Entertainment", true, ldp("2023-03-10T22:00"), ldp("2023-03-10T21:30")))
 
-        return notes
+        return songs
     }
 
     /**
@@ -63,12 +63,12 @@ object SerializerUtils {
      */
     @JvmStatic
     fun generateSeededFiles() {
-        val noteAPIs = ArrayList<NoteAPI>()
+        val songAPIs = ArrayList<SongAPI>()
 
-        noteAPIs.add(NoteAPI(XMLSerializer(File("notes.xml"))))
-        noteAPIs.add(NoteAPI(JSONSerializer(File("notes.json"))))
-        noteAPIs.add(NoteAPI(YAMLSerializer(File("notes.yaml"))))
+        songAPIs.add(SongAPI(XMLSerializer(File("songs.xml"))))
+        songAPIs.add(SongAPI(JSONSerializer(File("songs.json"))))
+        songAPIs.add(SongAPI(YAMLSerializer(File("songs.yaml"))))
 
-        noteAPIs.forEach { it.seedNotes(); it.store() }
+        songAPIs.forEach { it.seedSongs(); it.store() }
     }
 }

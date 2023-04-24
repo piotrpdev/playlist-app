@@ -1,7 +1,7 @@
 import com.jakewharton.picnic.TextBorder
 import com.jakewharton.picnic.renderText
-import controllers.NoteAPI
-import models.Note
+import controllers.SongAPI
+import models.Song
 import mu.KotlinLogging
 import persistence.XMLSerializer
 import utils.SerializerUtils
@@ -14,105 +14,105 @@ import kotlin.system.exitProcess
 
 private val logger = KotlinLogging.logger {}
 
-private val noteAPI = NoteAPI(XMLSerializer(File("notes.xml")))
-//private val noteAPI = NoteAPI(JSONSerializer(File("notes.json")))
-//private val noteAPI = NoteAPI(YAMLSerializer(File("notes.yaml")))
+private val songAPI = SongAPI(XMLSerializer(File("songs.xml")))
+//private val songAPI = SongAPI(JSONSerializer(File("songs.json")))
+//private val songAPI = SongAPI(YAMLSerializer(File("songs.yaml")))
 
 /**
- * Prints all notes in a tabular format with rounded borders.
+ * Prints all songs in a tabular format with rounded borders.
  */
-fun printAllNotes() = println(noteAPI.generateAllNotesTable().renderText(border = TextBorder.ROUNDED))
+fun printAllSongs() = println(songAPI.generateAllSongsTable().renderText(border = TextBorder.ROUNDED))
 
 /**
- * Generates a new note instance using user input for note properties.
- * @param old An optional Note instance to update. The new note will use the old note's properties as default values.
- * @return A new Note instance with the provided properties.
+ * Generates a new song instance using user input for song properties.
+ * @param old An optional Song instance to update. The new song will use the old song's properties as default values.
+ * @return A new Song instance with the provided properties.
  */
-fun generateNote(old: Note? = null): Note {
-    logger.debug { "Generating note" }
+fun generateSong(old: Song? = null): Song {
+    logger.debug { "Generating song" }
 
-    val noteTitle: String = getValidPropertyValue("noteTitle", old?.noteTitle)
-    val notePriority: Int = getValidPropertyValue("notePriority", old?.notePriority)
-    val noteCategory: String = getValidPropertyValue("noteCategory", old?.noteCategory)
-    val isNoteArchived: Boolean = getValidPropertyValue("isNoteArchived", old?.isNoteArchived)
+    val songTitle: String = getValidPropertyValue("songTitle", old?.songTitle)
+    val songPriority: Int = getValidPropertyValue("songPriority", old?.songPriority)
+    val songCategory: String = getValidPropertyValue("songCategory", old?.songCategory)
+    val isSongArchived: Boolean = getValidPropertyValue("isSongArchived", old?.isSongArchived)
 
-    return Note(noteTitle, notePriority, noteCategory, isNoteArchived)
+    return Song(songTitle, songPriority, songCategory, isSongArchived)
 }
 
 /**
- * Retrieves a Note instance based on its index.
- * @return The Note instance found, or null if not found.
+ * Retrieves a Song instance based on its index.
+ * @return The Song instance found, or null if not found.
  */
-internal fun getNoteByIndex(): Note? {
-    logger.debug { "Trying to get note by index" }
+internal fun getSongByIndex(): Song? {
+    logger.debug { "Trying to get song by index" }
 
-    if (noteAPI.numberOfNotes() == 0) {
-        println("No notes found.")
+    if (songAPI.numberOfSongs() == 0) {
+        println("No songs found.")
         return null
     }
 
-    printAllNotes()
+    printAllSongs()
 
-    val allNotes = noteAPI.findAll()
+    val allSongs = songAPI.findAll()
 
-    val noteIndex: Int = getValidPropertyValue("noteIndex", customValidator = { noteAPI.isValidIndex(it) })
+    val songIndex: Int = getValidPropertyValue("songIndex", customValidator = { songAPI.isValidIndex(it) })
 
-    val note = allNotes[noteIndex]
+    val song = allSongs[songIndex]
 
-    logger.debug { "Note found: $note" }
-    logger.debug { "Displaying note" }
-    println("\nThe following note was found:")
-    println(noteAPI.generateNoteTable(note).renderText(border = TextBorder.ROUNDED))
+    logger.debug { "Song found: $song" }
+    logger.debug { "Displaying song" }
+    println("\nThe following song was found:")
+    println(songAPI.generateSongTable(song).renderText(border = TextBorder.ROUNDED))
 
-    return note
+    return song
 }
 
 /**
- * Retrieves multiple Note instances based on their index.
- * @return A MutableList of Note instances found, or null if none found.
+ * Retrieves multiple Song instances based on their index.
+ * @return A MutableList of Song instances found, or null if none found.
  */
-internal fun getMultipleNotesByIndex(): MutableList<Note>? {
-    logger.debug { "Trying to get multiple notes by index" }
+internal fun getMultipleSongsByIndex(): MutableList<Song>? {
+    logger.debug { "Trying to get multiple songs by index" }
 
-    if (noteAPI.numberOfNotes() == 0) {
-        println("No notes found.")
+    if (songAPI.numberOfSongs() == 0) {
+        println("No songs found.")
         return null
     }
 
-    printAllNotes()
+    printAllSongs()
 
     val searchMultiple: Boolean = getValidPropertyValue(
         "yesNo",
-        customPrompt = "Do you want to search for multiple notes using their index? (y/n): "
+        customPrompt = "Do you want to search for multiple songs using their index? (y/n): "
     )
 
     if (!searchMultiple) {
-        logger.debug { "User does not want to search for multiple notes using index" }
-        return noteAPI.findAll()
+        logger.debug { "User does not want to search for multiple songs using index" }
+        return songAPI.findAll()
     }
 
     var searching = true
-    val noteList: MutableList<Note> = ArrayList()
+    val songList: MutableList<Song> = ArrayList()
 
-    fun noteInList(note: Note?): Boolean {
-        if (note == null) return false
-        return noteList.any { p -> p == note }
+    fun songInList(song: Song?): Boolean {
+        if (song == null) return false
+        return songList.any { p -> p == song }
     }
 
     while (searching) {
-        val note = getNoteByIndex()
+        val song = getSongByIndex()
 
-        if (noteInList(note)) {
-            println("Note already added to list.")
+        if (songInList(song)) {
+            println("Song already added to list.")
         }
 
-        if (note != null && !noteInList(note)) {
-            noteList.add(note)
+        if (song != null && !songInList(song)) {
+            songList.add(song)
         }
 
         val searchAgain: Boolean = getValidPropertyValue(
             "yesNo",
-            customPrompt = "Do you want to add another note to the list using their index? (y/n): "
+            customPrompt = "Do you want to add another song to the list using their index? (y/n): "
         )
 
         if (!searchAgain) {
@@ -122,60 +122,60 @@ internal fun getMultipleNotesByIndex(): MutableList<Note>? {
         println()
     }
 
-    logger.debug { "Returning note list (might be empty)." }
-    return noteList.ifEmpty { null }
+    logger.debug { "Returning song list (might be empty)." }
+    return songList.ifEmpty { null }
 }
 
 /**
- * Filters a MutableList of Note instances based on user input.
- * @param noteList The MutableList of Note instances to filter.
- * @return A MutableList of filtered Note instances, or null if none found.
+ * Filters a MutableList of Song instances based on user input.
+ * @param songList The MutableList of Song instances to filter.
+ * @return A MutableList of filtered Song instances, or null if none found.
  */
-fun getFilteredNotes(noteList: MutableList<Note>): MutableList<Note>? {
-    logger.debug { "Trying to get filtered notes" }
+fun getFilteredSongs(songList: MutableList<Song>): MutableList<Song>? {
+    logger.debug { "Trying to get filtered songs" }
 
     val input: Boolean = getValidPropertyValue(
         "yesNo",
-        customPrompt = "Do you want to filter the notes? (y/n): "
+        customPrompt = "Do you want to filter the songs? (y/n): "
     )
 
     if (!input) {
-        logger.debug { "Not filtering notes" }
-        return noteList
+        logger.debug { "Not filtering songs" }
+        return songList
     }
 
     var filtering = true
     while (filtering) {
-        print("How do you want to filter the notes? (1 - Title, 2 - Priority, 3 - Category, 4 - Archived, 5 - Updated At, 6 - Created At): ")
+        print("How do you want to filter the songs? (1 - Title, 2 - Priority, 3 - Category, 4 - Archived, 5 - Updated At, 6 - Created At): ")
         when (readln().toIntOrNull()) {
             1 -> {
-                val noteTitle: String = getValidPropertyValue("noteTitle")
-                noteList.removeIf { !it.noteTitle.lowercase().contains(noteTitle.lowercase()) }
+                val songTitle: String = getValidPropertyValue("songTitle")
+                songList.removeIf { !it.songTitle.lowercase().contains(songTitle.lowercase()) }
             }
 
             2 -> {
-                val notePriority: Int = getValidPropertyValue("notePriority")
-                noteList.removeIf { it.notePriority != notePriority }
+                val songPriority: Int = getValidPropertyValue("songPriority")
+                songList.removeIf { it.songPriority != songPriority }
             }
 
             3 -> {
-                val noteCategory: String = getValidPropertyValue("noteCategory")
-                noteList.removeIf { it.noteCategory != noteCategory }
+                val songCategory: String = getValidPropertyValue("songCategory")
+                songList.removeIf { it.songCategory != songCategory }
             }
 
             4 -> {
-                val isNoteArchived: Boolean = getValidPropertyValue("isNoteArchived")
-                noteList.removeIf { it.isNoteArchived != isNoteArchived }
+                val isSongArchived: Boolean = getValidPropertyValue("isSongArchived")
+                songList.removeIf { it.isSongArchived != isSongArchived }
             }
 
             5 -> {
                 val updatedAt: LocalDateTime = getValidPropertyValue("updatedAt")
-                noteList.removeIf { it.updatedAt.compareTo(updatedAt) != 0 }
+                songList.removeIf { it.updatedAt.compareTo(updatedAt) != 0 }
             }
 
             6 -> {
                 val createdAt: LocalDateTime = getValidPropertyValue("createdAt")
-                noteList.removeIf { it.createdAt.compareTo(createdAt) != 0 }
+                songList.removeIf { it.createdAt.compareTo(createdAt) != 0 }
             }
 
             else -> {
@@ -186,7 +186,7 @@ fun getFilteredNotes(noteList: MutableList<Note>): MutableList<Note>? {
 
         val filterAgain: Boolean = getValidPropertyValue(
             "yesNo",
-            customPrompt = "Do you want to filter the notes again? (y/n): "
+            customPrompt = "Do you want to filter the songs again? (y/n): "
         )
 
         if (!filterAgain) {
@@ -196,132 +196,132 @@ fun getFilteredNotes(noteList: MutableList<Note>): MutableList<Note>? {
         println()
     }
 
-    logger.debug { "Returning filtered note list (might be empty)." }
-    return noteList.ifEmpty { null }
+    logger.debug { "Returning filtered song list (might be empty)." }
+    return songList.ifEmpty { null }
 }
 
 /**
- * Sorts a MutableList of Note instances based on user input.
- * @param noteList The MutableList of Note instances to sort. Defaults to all notes.
- * @return A MutableList of sorted Note instances.
+ * Sorts a MutableList of Song instances based on user input.
+ * @param songList The MutableList of Song instances to sort. Defaults to all songs.
+ * @return A MutableList of sorted Song instances.
  */
-fun getSortedNotes(noteList: MutableList<Note> = noteAPI.findAll()): MutableList<Note> {
-    logger.debug { "Trying to get sorted notes" }
+fun getSortedSongs(songList: MutableList<Song> = songAPI.findAll()): MutableList<Song> {
+    logger.debug { "Trying to get sorted songs" }
 
     val input: Boolean = getValidPropertyValue(
         "yesNo",
-        customPrompt = "Do you want to sort the notes? (y/n): "
+        customPrompt = "Do you want to sort the songs? (y/n): "
     )
 
     if (!input) {
-        logger.debug { "Not sorting notes" }
-        return noteList
+        logger.debug { "Not sorting songs" }
+        return songList
     }
 
-    print("How do you want to sort the notes? (1 - Title, 2 - Priority, 3 - Category, 4 - Archived, 5 - Updated At, 6 - Created At): ")
+    print("How do you want to sort the songs? (1 - Title, 2 - Priority, 3 - Category, 4 - Archived, 5 - Updated At, 6 - Created At): ")
 
     when (readln().toIntOrNull()) {
-        1 -> noteList.sortBy { it.noteTitle }
-        2 -> noteList.sortBy { it.notePriority }
-        3 -> noteList.sortBy { it.noteCategory }
-        4 -> noteList.sortBy { it.isNoteArchived }
-        5 -> noteList.sortBy { it.updatedAt }
-        6 -> noteList.sortBy { it.createdAt }
+        1 -> songList.sortBy { it.songTitle }
+        2 -> songList.sortBy { it.songPriority }
+        3 -> songList.sortBy { it.songCategory }
+        4 -> songList.sortBy { it.isSongArchived }
+        5 -> songList.sortBy { it.updatedAt }
+        6 -> songList.sortBy { it.createdAt }
         else -> {
             println("Error: Invalid option. Please enter a valid option.")
-            return getSortedNotes()
+            return getSortedSongs()
         }
     }
 
-    logger.debug { "Returning sorted note list (might be empty)." }
-    return noteList
+    logger.debug { "Returning sorted song list (might be empty)." }
+    return songList
 }
 
 /**
- * Adds a new note to the NoteAPI using user input for properties.
+ * Adds a new song to the SongAPI using user input for properties.
  */
-fun addNote() {
-    logger.debug { "addNote() function invoked" }
+fun addSong() {
+    logger.debug { "addSong() function invoked" }
 
-    val note = generateNote()
+    val song = generateSong()
 
-    logger.debug { "Adding note: $note" }
-    noteAPI.add(note)
+    logger.debug { "Adding song: $song" }
+    songAPI.add(song)
 
-    println("\nThe following note was added successfully:\n")
-    println(noteAPI.generateNoteTable(noteAPI.findUsingNote(note) ?: note).renderText(border = TextBorder.ROUNDED))
+    println("\nThe following song was added successfully:\n")
+    println(songAPI.generateSongTable(songAPI.findUsingSong(song) ?: song).renderText(border = TextBorder.ROUNDED))
 }
 
 /**
- * Displays a selected note based on its index.
+ * Displays a selected song based on its index.
  */
-fun viewNote() {
-    logger.debug { "viewNote() function invoked" }
+fun viewSong() {
+    logger.debug { "viewSong() function invoked" }
 
-    getNoteByIndex() ?: return
+    getSongByIndex() ?: return
 }
 
 /**
- * Updates an existing note with new properties based on user input.
+ * Updates an existing song with new properties based on user input.
  */
-fun updateNote() {
-    logger.debug { "updateNote() function invoked" }
+fun updateSong() {
+    logger.debug { "updateSong() function invoked" }
 
-    val note = getNoteByIndex() ?: return
+    val song = getSongByIndex() ?: return
 
-    println("\nPlease enter the new details for the note (Enter nothing to keep previous value):")
+    println("\nPlease enter the new details for the song (Enter nothing to keep previous value):")
 
-    val updatedNote = generateNote(note)
-    updatedNote.createdAt = note.createdAt
+    val updatedSong = generateSong(song)
+    updatedSong.createdAt = song.createdAt
 
-    logger.debug { "Note found, updating note" }
-    noteAPI.updateNote(noteAPI.findIndexUsingNote(note), updatedNote)
+    logger.debug { "Song found, updating song" }
+    songAPI.updateSong(songAPI.findIndexUsingSong(song), updatedSong)
 
-    println("\nThe note was updated successfully:\n")
-    println(noteAPI.generateNoteTable(updatedNote).renderText(border = TextBorder.ROUNDED))
+    println("\nThe song was updated successfully:\n")
+    println(songAPI.generateSongTable(updatedSong).renderText(border = TextBorder.ROUNDED))
 }
 
 /**
- * Deletes a note based on its index.
+ * Deletes a song based on its index.
  */
-fun deleteNote() {
-    logger.debug { "deleteNote() function invoked" }
+fun deleteSong() {
+    logger.debug { "deleteSong() function invoked" }
 
-    if (noteAPI.numberOfNotes() == 0) {
-        println("No notes found.")
+    if (songAPI.numberOfSongs() == 0) {
+        println("No songs found.")
         return
     }
 
-    printAllNotes()
+    printAllSongs()
 
-    val noteIndex: Int = getValidPropertyValue("noteIndex", customPrompt = "Enter note index to delete: ", customValidator = { noteAPI.isValidIndex(it) })
+    val songIndex: Int = getValidPropertyValue("songIndex", customPrompt = "Enter song index to delete: ", customValidator = { songAPI.isValidIndex(it) })
 
-    //pass the index of the note to NoteAPI for deleting and check for success.
-    val noteToDelete = noteAPI.deleteNote(noteIndex)
-    if (noteToDelete != null) {
-        println("Delete Successful! Deleted note: ${noteToDelete.noteTitle}")
+    //pass the index of the song to SongAPI for deleting and check for success.
+    val songToDelete = songAPI.deleteSong(songIndex)
+    if (songToDelete != null) {
+        println("Delete Successful! Deleted song: ${songToDelete.songTitle}")
     } else {
         println("Delete NOT Successful")
     }
 }
 
 /**
- * Toggles the archive status of a note based on its index.
+ * Toggles the archive status of a song based on its index.
  */
-fun archiveNote() {
-    logger.debug { "archiveNote() function invoked" }
+fun archiveSong() {
+    logger.debug { "archiveSong() function invoked" }
 
-    if (noteAPI.numberOfNotes() == 0) {
-        println("No notes found.")
+    if (songAPI.numberOfSongs() == 0) {
+        println("No songs found.")
         return
     }
 
-    printAllNotes()
+    printAllSongs()
 
-    val noteIndex: Int = getValidPropertyValue("noteIndex", customPrompt = "Enter note index to archive: ", customValidator = { noteAPI.isValidIndex(it) })
+    val songIndex: Int = getValidPropertyValue("songIndex", customPrompt = "Enter song index to archive: ", customValidator = { songAPI.isValidIndex(it) })
 
-    //pass the index of the note and the new note details to NoteAPI for updating and check for success.
-    if (noteAPI.archiveNote(noteIndex)) {
+    //pass the index of the song and the new song details to SongAPI for updating and check for success.
+    if (songAPI.archiveSong(songIndex)) {
         println("Archive Successful")
     } else {
         println("Archive Failed")
@@ -329,111 +329,111 @@ fun archiveNote() {
 }
 
 /**
- * Searches for notes based on index, filters, and sorts them based on user input.
+ * Searches for songs based on index, filters, and sorts them based on user input.
  */
-fun searchNotes() {
-    logger.debug { "searchNotes() function invoked" }
+fun searchSongs() {
+    logger.debug { "searchSongs() function invoked" }
 
-    val noteList = getMultipleNotesByIndex() ?: return
-    val filteredNoteList = getFilteredNotes(noteList) ?: return
-    val sortedNoteList = getSortedNotes(filteredNoteList)
+    val songList = getMultipleSongsByIndex() ?: return
+    val filteredSongList = getFilteredSongs(songList) ?: return
+    val sortedSongList = getSortedSongs(filteredSongList)
 
-    println("Here are the notes you wanted to view:")
-    println(noteAPI.generateMultipleNotesTable(sortedNoteList).renderText(border = TextBorder.ROUNDED))
+    println("Here are the songs you wanted to view:")
+    println(songAPI.generateMultipleSongsTable(sortedSongList).renderText(border = TextBorder.ROUNDED))
 }
 
 /**
- * Removes multiple notes based on their index.
+ * Removes multiple songs based on their index.
  */
-fun removeMultipleNotes() {
-    logger.debug { "removeMultipleNotes() function invoked" }
+fun removeMultipleSongs() {
+    logger.debug { "removeMultipleSongs() function invoked" }
 
-    val noteList = getMultipleNotesByIndex() ?: return
+    val songList = getMultipleSongsByIndex() ?: return
 
-    println("Here are the notes you wanted to remove:")
-    println(noteAPI.generateMultipleNotesTable(noteList).renderText(border = TextBorder.ROUNDED))
+    println("Here are the songs you wanted to remove:")
+    println(songAPI.generateMultipleSongsTable(songList).renderText(border = TextBorder.ROUNDED))
 
     val delete: Boolean = getValidPropertyValue(
         "yesNo",
-        customPrompt = "Are you sure you want to remove these notes? (y/n): "
+        customPrompt = "Are you sure you want to remove these songs? (y/n): "
     )
 
     if (!delete) {
-        println("Notes not deleted.")
+        println("Songs not deleted.")
         return
     }
 
-    logger.debug { "Removing multiple notes" }
-    noteAPI.removeMultipleNotes(noteList)
-    println("Notes deleted.")
+    logger.debug { "Removing multiple songs" }
+    songAPI.removeMultipleSongs(songList)
+    println("Songs deleted.")
 }
 
 /**
- * Lists notes based on user-selected criteria.
+ * Lists songs based on user-selected criteria.
  */
-fun listNotes() {
-    logger.debug { "listNotes() function invoked" }
+fun listSongs() {
+    logger.debug { "listSongs() function invoked" }
 
-    println(UITables.listNotesMenu)
+    println(UITables.listSongsMenu)
 
     print("Enter option: ")
 
     when (readln().toIntOrNull()) {
-        1 -> println(noteAPI.listAllNotes())
-        2 -> println(noteAPI.listActiveNotes())
-        3 -> println(noteAPI.listArchivedNotes())
-        4 -> listNotesByPriority()
-        5 -> listStaleNotes()
-        6 -> listImportantNotes()
+        1 -> println(songAPI.listAllSongs())
+        2 -> println(songAPI.listActiveSongs())
+        3 -> println(songAPI.listArchivedSongs())
+        4 -> listSongsByPriority()
+        5 -> listStaleSongs()
+        6 -> listImportantSongs()
         0 -> {} // https://stackoverflow.com/questions/60755131/how-to-handle-empty-in-kotlins-when
         else -> println("Invalid choice")
     }
 }
 
 /**
- * Lists notes based on a specified number of days.
+ * Lists songs based on a specified number of days.
  */
-fun listStaleNotes() {
-    logger.debug { "listStaleNotes() function invoked" }
+fun listStaleSongs() {
+    logger.debug { "listStaleSongs() function invoked" }
 
     val days: Int = getValidPropertyValue("staleDays")
 
-    println(noteAPI.listStaleNotes(days))
+    println(songAPI.listStaleSongs(days))
 }
 
 /**
- * Lists notes with a priority of 1.
+ * Lists songs with a priority of 1.
  */
-fun listImportantNotes() {
-    logger.debug { "listImportantNotes() function invoked" }
+fun listImportantSongs() {
+    logger.debug { "listImportantSongs() function invoked" }
 
-    println(noteAPI.listImportantNotes())
+    println(songAPI.listImportantSongs())
 }
 
 /**
- * Lists notes based on a specified priority.
+ * Lists songs based on a specified priority.
  */
-fun listNotesByPriority() {
-    logger.debug { "listNotesByPriority() function invoked" }
+fun listSongsByPriority() {
+    logger.debug { "listSongsByPriority() function invoked" }
 
-    val notePriority: Int = getValidPropertyValue("notePriority")
+    val songPriority: Int = getValidPropertyValue("songPriority")
 
-    println(noteAPI.listNotesBySelectedPriority(notePriority))
+    println(songAPI.listSongsBySelectedPriority(songPriority))
 }
 
 /**
- * Loads notes from an external file.
+ * Loads songs from an external file.
  */
 fun load() {
     logger.debug { "load() function invoked" }
 
     try {
-        if (noteAPI.load()) {
-            println("Notes loaded successfully:")
+        if (songAPI.load()) {
+            println("Songs loaded successfully:")
 
-            printAllNotes()
+            printAllSongs()
         } else {
-            println("Error loading notes, see debug log for more info")
+            println("Error loading songs, see debug log for more info")
         }
     } catch (e: Exception) {
         System.err.println("Error reading from file: $e")
@@ -441,16 +441,16 @@ fun load() {
 }
 
 /**
- * Saves notes to an external file.
+ * Saves songs to an external file.
  */
 fun save() {
     logger.debug { "save() function invoked" }
 
     try {
-        noteAPI.store()
-        println("Notes saved successfully:")
+        songAPI.store()
+        println("Songs saved successfully:")
 
-        printAllNotes()
+        printAllSongs()
     } catch (e: Exception) {
         System.err.println("Error writing to file: $e")
     }
@@ -488,18 +488,18 @@ fun runMenu() {
 
     do {
         when (val option = mainMenu()) {
-            1 -> addNote()
-            2 -> viewNote()
-            3 -> updateNote()
-            4 -> deleteNote()
-            5 -> archiveNote()
-            6 -> searchNotes()
-            7 -> removeMultipleNotes()
-            8 -> listNotes()
+            1 -> addSong()
+            2 -> viewSong()
+            3 -> updateSong()
+            4 -> deleteSong()
+            5 -> archiveSong()
+            6 -> searchSongs()
+            7 -> removeMultipleSongs()
+            8 -> listSongs()
             9 -> load()
             10 -> save()
             -98 -> SerializerUtils.generateSeededFiles()
-            -99 -> noteAPI.seedNotes()
+            -99 -> songAPI.seedSongs()
             0 -> exitApp()
             else -> println("Invalid option entered: $option")
         }
@@ -507,7 +507,7 @@ fun runMenu() {
 }
 
 /**
- * Start the Notes App.
+ * Start the Songs App.
  */
 fun main() {
     logger.debug { "main() function invoked" }

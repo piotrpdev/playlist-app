@@ -23,12 +23,12 @@ class ValidatorUtilsTest {
     }
 
     @Test
-    fun testNotePriorityIsValid() {
-        assertTrue(ValidatorUtils.notePriorityIsValid("1"))
-        assertTrue(ValidatorUtils.notePriorityIsValid("5"))
-        assertFalse(ValidatorUtils.notePriorityIsValid("0"))
-        assertFalse(ValidatorUtils.notePriorityIsValid("6"))
-        assertFalse(ValidatorUtils.notePriorityIsValid(null))
+    fun testSongPriorityIsValid() {
+        assertTrue(ValidatorUtils.songPriorityIsValid("1"))
+        assertTrue(ValidatorUtils.songPriorityIsValid("5"))
+        assertFalse(ValidatorUtils.songPriorityIsValid("0"))
+        assertFalse(ValidatorUtils.songPriorityIsValid("6"))
+        assertFalse(ValidatorUtils.songPriorityIsValid(null))
     }
 
     @Test
@@ -60,10 +60,10 @@ class ValidatorUtilsTest {
 
     @Test
     fun testPropertyNameToPrompt() {
-        assertEquals("Enter note title: ", ValidatorUtils.propertyNameToPrompt("noteTitle", null))
+        assertEquals("Enter song title: ", ValidatorUtils.propertyNameToPrompt("songTitle", null))
         assertEquals(
-            "Enter note priority (1-low, 2, 3, 4, 5-high): ",
-            ValidatorUtils.propertyNameToPrompt("notePriority", null)
+            "Enter song priority (1-low, 2, 3, 4, 5-high): ",
+            ValidatorUtils.propertyNameToPrompt("songPriority", null)
         )
         assertThrows(IllegalArgumentException::class.java) {
             ValidatorUtils.propertyNameToPrompt(
@@ -76,8 +76,8 @@ class ValidatorUtilsTest {
     @Test
     fun testPropertyNameToError() {
         assertEquals(
-            "Error: note title was invalid. Please enter a string",
-            ValidatorUtils.propertyNameToError("noteTitle")
+            "Error: song title was invalid. Please enter a string",
+            ValidatorUtils.propertyNameToError("songTitle")
         )
         assertEquals(
             "Error: invalid number of days. Please enter a valid positive integer.",
@@ -88,7 +88,7 @@ class ValidatorUtilsTest {
 
     @Test
     fun testPropertyNameToValidator() {
-        assertEquals(ValidatorUtils::stringIsValid, ValidatorUtils.propertyNameToValidator("noteTitle"))
+        assertEquals(ValidatorUtils::stringIsValid, ValidatorUtils.propertyNameToValidator("songTitle"))
         assertEquals(ValidatorUtils::localDateTimeIsValid, ValidatorUtils.propertyNameToValidator("updatedAt"))
         assertThrows(IllegalArgumentException::class.java) { ValidatorUtils.propertyNameToValidator("invalidPropertyName") }
     }
