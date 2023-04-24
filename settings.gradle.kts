@@ -1,3 +1,3 @@
 
-rootProject.name = "notes-app"
+rootProject.name = "songs-app"
 

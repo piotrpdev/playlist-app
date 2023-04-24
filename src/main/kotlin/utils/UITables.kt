@@ -4,12 +4,12 @@ import com.jakewharton.picnic.TextAlignment
 import com.jakewharton.picnic.TextBorder
 import com.jakewharton.picnic.renderText
 import com.jakewharton.picnic.table
-import models.Note
+import models.Song
 
 // DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).format(date)
 
 /**
- * An object containing preconfigured tables for displaying user interface elements related to notes.
+ * An object containing preconfigured tables for displaying user interface elements related to songs.
  */
 object UITables {
     /**
@@ -25,7 +25,7 @@ object UITables {
         }
         header {
             row {
-                cell("Notes Menu") {
+                cell("Songs Menu") {
                     columnSpan = 2
                     alignment = TextAlignment.MiddleCenter
                     border = true
@@ -35,23 +35,23 @@ object UITables {
         body {
             row {
                 cell("1")
-                cell("Add Note")
+                cell("Add Song")
             }
             row {
                 cell("2")
-                cell("View Note")
+                cell("View Song")
             }
             row {
                 cell("3")
-                cell("Update Note")
+                cell("Update Song")
             }
             row {
                 cell("4")
-                cell("Delete Note")
+                cell("Delete Song")
             }
             row {
                 cell("5")
-                cell("Archive Note")
+                cell("Archive Song")
             }
             row {
                 cell("")
@@ -59,11 +59,11 @@ object UITables {
             }
             row {
                 cell("6")
-                cell("Search Notes")
+                cell("Search Songs")
             }
             row {
                 cell("7")
-                cell("Remove Multiple Notes")
+                cell("Remove Multiple Songs")
             }
             row {
                 cell("")
@@ -71,7 +71,7 @@ object UITables {
             }
             row {
                 cell("8")
-                cell("List Notes")
+                cell("List Songs")
             }
             row {
                 cell("")
@@ -79,11 +79,11 @@ object UITables {
             }
             row {
                 cell("9")
-                cell("Load Notes from File")
+                cell("Load Songs from File")
             }
             row {
                 cell("10")
-                cell("Save Notes to File")
+                cell("Save Songs to File")
                 cellStyle {
                     borderBottom = true
                 }
@@ -101,9 +101,9 @@ object UITables {
     }.renderText(border = TextBorder.ROUNDED)
 
     /**
-     * The list notes menu table, displayed as a formatted string.
+     * The list songs menu table, displayed as a formatted string.
      */
-    val listNotesMenu = table {
+    val listSongsMenu = table {
         cellStyle {
             alignment = TextAlignment.MiddleRight
             paddingLeft = 1
@@ -113,7 +113,7 @@ object UITables {
         }
         header {
             row {
-                cell("List Notes Menu") {
+                cell("List Songs Menu") {
                     columnSpan = 2
                     alignment = TextAlignment.MiddleCenter
                     border = true
@@ -123,27 +123,27 @@ object UITables {
         body {
             row {
                 cell("1")
-                cell("List All Notes")
+                cell("List All Songs")
             }
             row {
                 cell("2")
-                cell("List Active Notes")
+                cell("List Active Songs")
             }
             row {
                 cell("3")
-                cell("List Archived Notes")
+                cell("List Archived Songs")
             }
             row {
                 cell("4")
-                cell("List Notes by Priority")
+                cell("List Songs by Priority")
             }
             row {
                 cell("5")
-                cell("List Stale Notes")
+                cell("List Stale Songs")
             }
             row {
                 cell("6")
-                cell("List Important Notes")
+                cell("List Important Songs")
                 cellStyle {
                     borderBottom = true
                 }
@@ -161,15 +161,15 @@ object UITables {
     }.renderText(border = TextBorder.ROUNDED)
 
     /**
-     * Generates a table containing note information, using a predefined template.
+     * Generates a table containing song information, using a predefined template.
      *
      * @param title The title to display in the table.
-     * @param data The list of notes to display in the table.
-     * @param allNotes A flag indicating whether to display all notes (default is false).
-     * @return A table containing the note information.
+     * @param data The list of songs to display in the table.
+     * @param allSongs A flag indicating whether to display all songs (default is false).
+     * @return A table containing the song information.
      */
     @JvmStatic
-    fun noteInfoTemplate(title: String, data: List<Note>, allNotes: Boolean) = table {
+    fun songInfoTemplate(title: String, data: List<Song>, allSongs: Boolean) = table {
         cellStyle {
             alignment = TextAlignment.MiddleRight
             paddingLeft = 1
@@ -180,7 +180,7 @@ object UITables {
         header {
             row {
                 cell(title) {
-                    columnSpan = if (allNotes) 5 else 4
+                    columnSpan = if (allSongs) 5 else 4
                     alignment = TextAlignment.MiddleCenter
                     border = true
                 }
@@ -190,7 +190,7 @@ object UITables {
                     border = true
                     alignment = TextAlignment.BottomLeft
                 }
-                if (allNotes) {
+                if (allSongs) {
                     cell("Index") {
                         alignment = TextAlignment.MiddleCenter
                     }
@@ -218,15 +218,15 @@ object UITables {
         body {
             data.forEachIndexed { index, it ->
                 row {
-                    if (allNotes) {
+                    if (allSongs) {
                         cell(index.toString()) {
                             alignment = TextAlignment.MiddleCenter
                         }
                     }
-                    cell(it.noteTitle) {}
-                    cell(it.notePriority.toString()) {}
-                    cell(it.noteCategory) {}
-                    cell(if (it.isNoteArchived) "Yes" else "No") {}
+                    cell(it.songTitle) {}
+                    cell(it.songPriority.toString()) {}
+                    cell(it.songCategory) {}
+                    cell(if (it.isSongArchived) "Yes" else "No") {}
                     cell(it.updatedAt.toString()) {}
                     cell(it.createdAt.toString()) {}
                     if (index == data.size - 1) {

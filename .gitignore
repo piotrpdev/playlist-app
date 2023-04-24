@@ -76,7 +76,7 @@ outTmp/
 /kotlin-native/dist
 kotlin-ide/
 /htmlReport/
-notes.test.json
-notes.test.yaml
-notes.test.xml
+songs.test.json
+songs.test.yaml
+songs.test.xml
 /.idea/discord.xml
