@@ -12,10 +12,10 @@ object ValidatorUtils {
     fun intIsValid(int: String?): Boolean = stringIsValid(int) && int!!.toIntOrNull() != null
 
     @JvmStatic
-    fun songPriorityIsValid(priority: String?): Boolean = intIsValid(priority) && priority!!.toInt() in 1..5
+    fun songRatingIsValid(rating: String?): Boolean = intIsValid(rating) && rating!!.toInt() in 1..5
 
     @JvmStatic
-    fun yesNoIsValid(isArchived: String?): Boolean = stringIsValid(isArchived) && isArchived!!.toCharArray()[0].lowercase() in arrayOf("y", "n")
+    fun yesNoIsValid(isExplicit: String?): Boolean = stringIsValid(isExplicit) && isExplicit!!.toCharArray()[0].lowercase() in arrayOf("y", "n")
 
     @JvmStatic
     fun localDateTimeIsValid(localDateTime: String?): Boolean = stringIsValid(localDateTime) && isValidLocalDateTime(localDateTime!!)
@@ -43,9 +43,9 @@ object ValidatorUtils {
     fun propertyNameToPrompt(propertyName: String, oldPropertyValue: Any?): String {
         return when (propertyName) {
             "songTitle" -> "Enter song title${def(oldPropertyValue)}: "
-            "songPriority" -> "Enter song priority (1-low, 2, 3, 4, 5-high)${def(oldPropertyValue)}: "
-            "songCategory" -> "Enter song category${def(oldPropertyValue)}: "
-            "isSongArchived" -> "Enter song archived status (y/n)${def(oldPropertyValue)}: "
+            "songRating" -> "Enter song rating (1-low, 2, 3, 4, 5-high)${def(oldPropertyValue)}: "
+            "songGenre" -> "Enter song genre${def(oldPropertyValue)}: "
+            "isSongExplicit" -> "Enter song explicit status (y/n)${def(oldPropertyValue)}: "
             "updatedAt" -> "Enter song updated at (e.g. 2023-03-09T11:30:00)${def(oldPropertyValue)}: "
             "createdAt" -> "Enter song created at (e.g. 2023-03-09T11:30:00)${def(oldPropertyValue)}: "
             "staleDays" -> "Show songs that haven't been updated in this many days: "
@@ -58,9 +58,9 @@ object ValidatorUtils {
     fun propertyNameToError(propertyName: String): String {
         return when (propertyName) {
             "songTitle" -> "Error: song title was invalid. Please enter a string"
-            "songPriority" -> "Error: song priority was invalid. Please enter an integer between 1 and 5"
-            "songCategory" -> "Error: song category was invalid. Please enter a string"
-            "isSongArchived" -> "Error: song archived status was invalid. Please enter either 'y' or 'n'"
+            "songRating" -> "Error: song rating was invalid. Please enter an integer between 1 and 5"
+            "songGenre" -> "Error: song genre was invalid. Please enter a string"
+            "isSongExplicit" -> "Error: song explicit status was invalid. Please enter either 'y' or 'n'"
             "updatedAt" -> "Error: song updated at was invalid. Please enter a valid date and time (e.g. 2023-03-09T11:30:00)"
             "createdAt" -> "Error: song created at was invalid. Please enter a valid date and time (e.g. 2023-03-09T11:30:00)"
             "staleDays" -> "Error: invalid number of days. Please enter a valid positive integer."
@@ -74,9 +74,9 @@ object ValidatorUtils {
     fun propertyNameToValidator(propertyName: String): (String?) -> Boolean {
         return when (propertyName) {
             "songTitle" -> ::stringIsValid
-            "songPriority" -> ::songPriorityIsValid
-            "songCategory" -> ::stringIsValid
-            "isSongArchived" -> ::yesNoIsValid
+            "songRating" -> ::songRatingIsValid
+            "songGenre" -> ::stringIsValid
+            "isSongExplicit" -> ::yesNoIsValid
             "updatedAt" -> ::localDateTimeIsValid
             "createdAt" -> ::localDateTimeIsValid
             "staleDays" -> ::staleDaysIsValid

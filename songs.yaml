@@ -1,8 +1,8 @@
 ---
-- songTitle: "Grocery list"
-  songPriority: 3
-  songCategory: "Shopping"
-  isSongArchived: false
+- songTitle: "Smooth"
+  songRating: 3
+  songGenre: "Latin"
+  isSongExplicit: false
   updatedAt:
   - 2023
   - 3
@@ -15,10 +15,10 @@
   - 10
   - 10
   - 0
-- songTitle: "Meeting agenda"
-  songPriority: 1
-  songCategory: "Work"
-  isSongArchived: false
+- songTitle: "Lose Yourself"
+  songRating: 1
+  songGenre: "Hip Hop"
+  isSongExplicit: false
   updatedAt:
   - 2023
   - 3
@@ -31,10 +31,10 @@
   - 11
   - 13
   - 0
-- songTitle: "Birthday party ideas"
-  songPriority: 2
-  songCategory: "Personal"
-  isSongArchived: false
+- songTitle: "Ain't No Mountain High Enough"
+  songRating: 2
+  songGenre: "Soul"
+  isSongExplicit: false
   updatedAt:
   - 2023
   - 3
@@ -47,10 +47,10 @@
   - 14
   - 17
   - 30
-- songTitle: "Workout plan"
-  songPriority: 4
-  songCategory: "Health"
-  isSongArchived: false
+- songTitle: "Highway to Hell"
+  songRating: 4
+  songGenre: "Rock"
+  isSongExplicit: false
   updatedAt:
   - 2023
   - 3
@@ -63,10 +63,10 @@
   - 9
   - 11
   - 0
-- songTitle: "Books to read"
-  songPriority: 5
-  songCategory: "Entertainment"
-  isSongArchived: true
+- songTitle: "Sweet Child o' Mine"
+  songRating: 5
+  songGenre: "Rock"
+  isSongExplicit: true
   updatedAt:
   - 2023
   - 3
@@ -79,10 +79,10 @@
   - 8
   - 12
   - 0
-- songTitle: "Travel itinerary"
-  songPriority: 1
-  songCategory: "Travel"
-  isSongArchived: false
+- songTitle: "Livin' on a Prayer"
+  songRating: 1
+  songGenre: "Rock"
+  isSongExplicit: false
   updatedAt:
   - 2023
   - 3
@@ -95,10 +95,10 @@
   - 10
   - 19
   - 30
-- songTitle: "Recipes to try"
-  songPriority: 3
-  songCategory: "Cooking"
-  isSongArchived: true
+- songTitle: "Billie Jean"
+  songRating: 3
+  songGenre: "Pop"
+  isSongExplicit: true
   updatedAt:
   - 2023
   - 3
@@ -111,10 +111,10 @@
   - 11
   - 13
   - 45
-- songTitle: "Project milestones"
-  songPriority: 1
-  songCategory: "Work"
-  isSongArchived: false
+- songTitle: "The Power of Love"
+  songRating: 1
+  songGenre: "Pop"
+  isSongExplicit: false
   updatedAt:
   - 2023
   - 3
@@ -127,10 +127,10 @@
   - 15
   - 14
   - 30
-- songTitle: "Weekend trip packing list"
-  songPriority: 2
-  songCategory: "Travel"
-  isSongArchived: false
+- songTitle: "Sweet Home Alabama"
+  songRating: 2
+  songGenre: "Country"
+  isSongExplicit: false
   updatedAt:
   - 2023
   - 3
@@ -143,10 +143,10 @@
   - 12
   - 16
   - 45
-- songTitle: "Car maintenance schedule"
-  songPriority: 4
-  songCategory: "Personal"
-  isSongArchived: false
+- songTitle: "Enter Sandman"
+  songRating: 4
+  songGenre: "Metal"
+  isSongExplicit: false
   updatedAt:
   - 2023
   - 3
@@ -159,19 +159,3 @@
   - 14
   - 10
   - 0
-- songTitle: "Movies to watch"
-  songPriority: 5
-  songCategory: "Entertainment"
-  isSongArchived: true
-  updatedAt:
-  - 2023
-  - 3
-  - 10
-  - 22
-  - 0
-  createdAt:
-  - 2023
-  - 3
-  - 10
-  - 21
-  - 30

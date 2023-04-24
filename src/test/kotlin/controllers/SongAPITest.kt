@@ -190,26 +190,26 @@ class SongAPITest {
         }
 
         @Test
-        fun `listActiveSongs returns No Active Songs Stored message when ArrayList is empty`() {
+        fun `listSafeSongs returns No Safe Songs Stored message when ArrayList is empty`() {
             assertEquals(0, emptySongs!!.numberOfSongs())
-            assertTrue(emptySongs!!.listActiveSongs().lowercase().contains("no active songs"))
+            assertTrue(emptySongs!!.listSafeSongs().lowercase().contains("no safe songs"))
         }
 
         @Test
-        fun `listActiveSongs returns No Active Songs Stored message when ArrayList has no active songs stored`() {
+        fun `listSafeSongs returns No Safe Songs Stored message when ArrayList has no safe songs stored`() {
             assertEquals(5, populatedSongs!!.numberOfSongs())
-            populatedSongs!!.findSong(0)!!.isSongArchived = true
-            populatedSongs!!.findSong(1)!!.isSongArchived = true
-            populatedSongs!!.findSong(2)!!.isSongArchived = true
-            populatedSongs!!.findSong(3)!!.isSongArchived = true
-            populatedSongs!!.findSong(4)!!.isSongArchived = true
-            assertTrue(populatedSongs!!.listActiveSongs().lowercase().contains("no active songs"))
+            populatedSongs!!.findSong(0)!!.isSongExplicit = true
+            populatedSongs!!.findSong(1)!!.isSongExplicit = true
+            populatedSongs!!.findSong(2)!!.isSongExplicit = true
+            populatedSongs!!.findSong(3)!!.isSongExplicit = true
+            populatedSongs!!.findSong(4)!!.isSongExplicit = true
+            assertTrue(populatedSongs!!.listSafeSongs().lowercase().contains("no safe songs"))
         }
 
         @Test
-        fun `listActiveSongs returns Active Songs when ArrayList has active songs stored`() {
+        fun `listSafeSongs returns Safe Songs when ArrayList has safe songs stored`() {
             assertEquals(5, populatedSongs!!.numberOfSongs())
-            val songsString = populatedSongs!!.listActiveSongs().lowercase()
+            val songsString = populatedSongs!!.listSafeSongs().lowercase()
             assertTrue(songsString.contains("learning kotlin"))
             assertTrue(songsString.contains("code app"))
             assertTrue(songsString.contains("test app"))
@@ -218,26 +218,26 @@ class SongAPITest {
         }
 
         @Test
-        fun `listArchivedSongs returns No Archived Songs Stored message when ArrayList is empty`() {
+        fun `listExplicitSongs returns No Explicit Songs Stored message when ArrayList is empty`() {
             assertEquals(0, emptySongs!!.numberOfSongs())
-            assertTrue(emptySongs!!.listArchivedSongs().lowercase().contains("no archived songs"))
+            assertTrue(emptySongs!!.listExplicitSongs().lowercase().contains("no explicit songs"))
         }
 
         @Test
-        fun `listArchivedSongs returns No Archived Songs Stored message when ArrayList has no archived songs stored`() {
+        fun `listExplicitSongs returns No Explicit Songs Stored message when ArrayList has no explicit songs stored`() {
             assertEquals(5, populatedSongs!!.numberOfSongs())
-            assertTrue(populatedSongs!!.listArchivedSongs().lowercase().contains("no archived songs"))
+            assertTrue(populatedSongs!!.listExplicitSongs().lowercase().contains("no explicit songs"))
         }
 
         @Test
-        fun `listArchivedSongs returns Archived Songs when ArrayList has archived songs stored`() {
+        fun `listExplicitSongs returns Explicit Songs when ArrayList has explicit songs stored`() {
             assertEquals(5, populatedSongs!!.numberOfSongs())
-            populatedSongs!!.findSong(0)!!.isSongArchived = true
-            populatedSongs!!.findSong(1)!!.isSongArchived = true
-            populatedSongs!!.findSong(2)!!.isSongArchived = true
-            populatedSongs!!.findSong(3)!!.isSongArchived = true
-            populatedSongs!!.findSong(4)!!.isSongArchived = true
-            val songsString = populatedSongs!!.listArchivedSongs().lowercase()
+            populatedSongs!!.findSong(0)!!.isSongExplicit = true
+            populatedSongs!!.findSong(1)!!.isSongExplicit = true
+            populatedSongs!!.findSong(2)!!.isSongExplicit = true
+            populatedSongs!!.findSong(3)!!.isSongExplicit = true
+            populatedSongs!!.findSong(4)!!.isSongExplicit = true
+            val songsString = populatedSongs!!.listExplicitSongs().lowercase()
             assertTrue(songsString.contains("learning kotlin"))
             assertTrue(songsString.contains("code app"))
             assertTrue(songsString.contains("test app"))
@@ -246,21 +246,21 @@ class SongAPITest {
         }
 
         @Test
-        fun `listSongsBySelectedPriority returns No Songs with Priority Stored message when ArrayList is empty`() {
+        fun `listSongsBySelectedRating returns No Songs with Rating Stored message when ArrayList is empty`() {
             assertEquals(0, emptySongs!!.numberOfSongs())
-            assertTrue(emptySongs!!.listSongsBySelectedPriority(1).lowercase().contains("no songs with priority"))
+            assertTrue(emptySongs!!.listSongsBySelectedRating(1).lowercase().contains("no songs with rating"))
         }
 
         @Test
-        fun `listSongsBySelectedPriority returns No Songs with Priority Stored message when ArrayList has no songs with priority stored`() {
+        fun `listSongsBySelectedRating returns No Songs with Rating Stored message when ArrayList has no songs with rating stored`() {
             assertEquals(5, populatedSongs!!.numberOfSongs())
-            assertTrue(populatedSongs!!.listSongsBySelectedPriority(2).lowercase().contains("no songs with priority"))
+            assertTrue(populatedSongs!!.listSongsBySelectedRating(2).lowercase().contains("no songs with rating"))
         }
 
         @Test
-        fun `listSongsBySelectedPriority returns Songs with Priority when ArrayList has songs with priority stored`() {
+        fun `listSongsBySelectedRating returns Songs with Rating when ArrayList has songs with rating stored`() {
             assertEquals(5, populatedSongs!!.numberOfSongs())
-            val songsString = populatedSongs!!.listSongsBySelectedPriority(4).lowercase()
+            val songsString = populatedSongs!!.listSongsBySelectedRating(4).lowercase()
             assertTrue(songsString.contains("code app"))
             assertTrue(songsString.contains("test app"))
         }
@@ -361,14 +361,14 @@ class SongAPITest {
             //check song 5 exists and check the contents
             assertEquals(swim, populatedSongs!!.findSong(4))
             assertEquals("Swim - Pool", populatedSongs!!.findSong(4)!!.songTitle)
-            assertEquals(3, populatedSongs!!.findSong(4)!!.songPriority)
-            assertEquals("Hobby", populatedSongs!!.findSong(4)!!.songCategory)
+            assertEquals(3, populatedSongs!!.findSong(4)!!.songRating)
+            assertEquals("Hobby", populatedSongs!!.findSong(4)!!.songGenre)
 
             //update song 5 with new information and ensure contents updated successfully
             assertTrue(populatedSongs!!.updateSong(4, Song("Updating Song", 2, "College", false)))
             assertEquals("Updating Song", populatedSongs!!.findSong(4)!!.songTitle)
-            assertEquals(2, populatedSongs!!.findSong(4)!!.songPriority)
-            assertEquals("College", populatedSongs!!.findSong(4)!!.songCategory)
+            assertEquals(2, populatedSongs!!.findSong(4)!!.songRating)
+            assertEquals("College", populatedSongs!!.findSong(4)!!.songGenre)
         }
     }
 
@@ -387,16 +387,16 @@ class SongAPITest {
             //check song 5 exists and check the contents
             assertEquals(swim, populatedSongs!!.findSong(4))
             assertEquals("Swim - Pool", populatedSongs!!.findSong(4)!!.songTitle)
-            assertEquals(3, populatedSongs!!.findSong(4)!!.songPriority)
-            assertEquals("Hobby", populatedSongs!!.findSong(4)!!.songCategory)
-            assertFalse(populatedSongs!!.findSong(4)!!.isSongArchived)
+            assertEquals(3, populatedSongs!!.findSong(4)!!.songRating)
+            assertEquals("Hobby", populatedSongs!!.findSong(4)!!.songGenre)
+            assertFalse(populatedSongs!!.findSong(4)!!.isSongExplicit)
 
             //archive song 5 and ensure contents updated successfully
             assertTrue(populatedSongs!!.archiveSong(4))
             assertEquals("Swim - Pool", populatedSongs!!.findSong(4)!!.songTitle)
-            assertEquals(3, populatedSongs!!.findSong(4)!!.songPriority)
-            assertEquals("Hobby", populatedSongs!!.findSong(4)!!.songCategory)
-            assertTrue(populatedSongs!!.findSong(4)!!.isSongArchived)
+            assertEquals(3, populatedSongs!!.findSong(4)!!.songRating)
+            assertEquals("Hobby", populatedSongs!!.findSong(4)!!.songGenre)
+            assertTrue(populatedSongs!!.findSong(4)!!.isSongExplicit)
         }
     }
 
@@ -410,25 +410,25 @@ class SongAPITest {
         }
 
         @Test
-        fun numberOfArchivedSongsCalculatedCorrectly() {
-            assertEquals(0, populatedSongs!!.numberOfArchivedSongs())
-            assertEquals(0, emptySongs!!.numberOfArchivedSongs())
+        fun numberOfExplicitSongsCalculatedCorrectly() {
+            assertEquals(0, populatedSongs!!.numberOfExplicitSongs())
+            assertEquals(0, emptySongs!!.numberOfExplicitSongs())
         }
 
         @Test
-        fun numberOfActiveSongsCalculatedCorrectly() {
-            assertEquals(5, populatedSongs!!.numberOfActiveSongs())
-            assertEquals(0, emptySongs!!.numberOfActiveSongs())
+        fun numberOfSafeSongsCalculatedCorrectly() {
+            assertEquals(5, populatedSongs!!.numberOfSafeSongs())
+            assertEquals(0, emptySongs!!.numberOfSafeSongs())
         }
 
         @Test
-        fun numberOfSongsByPriorityCalculatedCorrectly() {
-            assertEquals(1, populatedSongs!!.numberOfSongsByPriority(1))
-            assertEquals(0, populatedSongs!!.numberOfSongsByPriority(2))
-            assertEquals(1, populatedSongs!!.numberOfSongsByPriority(3))
-            assertEquals(2, populatedSongs!!.numberOfSongsByPriority(4))
-            assertEquals(1, populatedSongs!!.numberOfSongsByPriority(5))
-            assertEquals(0, emptySongs!!.numberOfSongsByPriority(1))
+        fun numberOfSongsByRatingCalculatedCorrectly() {
+            assertEquals(1, populatedSongs!!.numberOfSongsByRating(1))
+            assertEquals(0, populatedSongs!!.numberOfSongsByRating(2))
+            assertEquals(1, populatedSongs!!.numberOfSongsByRating(3))
+            assertEquals(2, populatedSongs!!.numberOfSongsByRating(4))
+            assertEquals(1, populatedSongs!!.numberOfSongsByRating(5))
+            assertEquals(0, emptySongs!!.numberOfSongsByRating(1))
         }
 
         @Test

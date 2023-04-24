@@ -3,7 +3,9 @@ import com.jakewharton.picnic.renderText
 import controllers.SongAPI
 import models.Song
 import mu.KotlinLogging
+import persistence.JSONSerializer
 import persistence.XMLSerializer
+import persistence.YAMLSerializer
 import utils.SerializerUtils
 import utils.UITables
 import utils.ValidatorUtils.getValidPropertyValue
@@ -32,11 +34,11 @@ fun generateSong(old: Song? = null): Song {
     logger.debug { "Generating song" }
 
     val songTitle: String = getValidPropertyValue("songTitle", old?.songTitle)
-    val songPriority: Int = getValidPropertyValue("songPriority", old?.songPriority)
-    val songCategory: String = getValidPropertyValue("songCategory", old?.songCategory)
-    val isSongArchived: Boolean = getValidPropertyValue("isSongArchived", old?.isSongArchived)
+    val songRating: Int = getValidPropertyValue("songRating", old?.songRating)
+    val songGenre: String = getValidPropertyValue("songGenre", old?.songGenre)
+    val isSongExplicit: Boolean = getValidPropertyValue("isSongExplicit", old?.isSongExplicit)
 
-    return Song(songTitle, songPriority, songCategory, isSongArchived)
+    return Song(songTitle, songRating, songGenre, isSongExplicit)
 }
 
 /**
@@ -146,7 +148,7 @@ fun getFilteredSongs(songList: MutableList<Song>): MutableList<Song>? {
 
     var filtering = true
     while (filtering) {
-        print("How do you want to filter the songs? (1 - Title, 2 - Priority, 3 - Category, 4 - Archived, 5 - Updated At, 6 - Created At): ")
+        print("How do you want to filter the songs? (1 - Title, 2 - Rating, 3 - Genre, 4 - Explicit, 5 - Updated At, 6 - Created At): ")
         when (readln().toIntOrNull()) {
             1 -> {
                 val songTitle: String = getValidPropertyValue("songTitle")
@@ -154,18 +156,18 @@ fun getFilteredSongs(songList: MutableList<Song>): MutableList<Song>? {
             }
 
             2 -> {
-                val songPriority: Int = getValidPropertyValue("songPriority")
-                songList.removeIf { it.songPriority != songPriority }
+                val songRating: Int = getValidPropertyValue("songRating")
+                songList.removeIf { it.songRating != songRating }
             }
 
             3 -> {
-                val songCategory: String = getValidPropertyValue("songCategory")
-                songList.removeIf { it.songCategory != songCategory }
+                val songGenre: String = getValidPropertyValue("songGenre")
+                songList.removeIf { it.songGenre != songGenre }
             }
 
             4 -> {
-                val isSongArchived: Boolean = getValidPropertyValue("isSongArchived")
-                songList.removeIf { it.isSongArchived != isSongArchived }
+                val isSongExplicit: Boolean = getValidPropertyValue("isSongExplicit")
+                songList.removeIf { it.isSongExplicit != isSongExplicit }
             }
 
             5 -> {
@@ -218,13 +220,13 @@ fun getSortedSongs(songList: MutableList<Song> = songAPI.findAll()): MutableList
         return songList
     }
 
-    print("How do you want to sort the songs? (1 - Title, 2 - Priority, 3 - Category, 4 - Archived, 5 - Updated At, 6 - Created At): ")
+    print("How do you want to sort the songs? (1 - Title, 2 - Rating, 3 - Genre, 4 - Explicit, 5 - Updated At, 6 - Created At): ")
 
     when (readln().toIntOrNull()) {
         1 -> songList.sortBy { it.songTitle }
-        2 -> songList.sortBy { it.songPriority }
-        3 -> songList.sortBy { it.songCategory }
-        4 -> songList.sortBy { it.isSongArchived }
+        2 -> songList.sortBy { it.songRating }
+        3 -> songList.sortBy { it.songGenre }
+        4 -> songList.sortBy { it.isSongExplicit }
         5 -> songList.sortBy { it.updatedAt }
         6 -> songList.sortBy { it.createdAt }
         else -> {
@@ -380,9 +382,9 @@ fun listSongs() {
 
     when (readln().toIntOrNull()) {
         1 -> println(songAPI.listAllSongs())
-        2 -> println(songAPI.listActiveSongs())
-        3 -> println(songAPI.listArchivedSongs())
-        4 -> listSongsByPriority()
+        2 -> println(songAPI.listSafeSongs())
+        3 -> println(songAPI.listExplicitSongs())
+        4 -> listSongsByRating()
         5 -> listStaleSongs()
         6 -> listImportantSongs()
         0 -> {} // https://stackoverflow.com/questions/60755131/how-to-handle-empty-in-kotlins-when
@@ -402,7 +404,7 @@ fun listStaleSongs() {
 }
 
 /**
- * Lists songs with a priority of 1.
+ * Lists songs with a rating of 1.
  */
 fun listImportantSongs() {
     logger.debug { "listImportantSongs() function invoked" }
@@ -411,14 +413,14 @@ fun listImportantSongs() {
 }
 
 /**
- * Lists songs based on a specified priority.
+ * Lists songs based on a specified rating.
  */
-fun listSongsByPriority() {
-    logger.debug { "listSongsByPriority() function invoked" }
+fun listSongsByRating() {
+    logger.debug { "listSongsByRating() function invoked" }
 
-    val songPriority: Int = getValidPropertyValue("songPriority")
+    val songRating: Int = getValidPropertyValue("songRating")
 
-    println(songAPI.listSongsBySelectedPriority(songPriority))
+    println(songAPI.listSongsBySelectedRating(songRating))
 }
 
 /**
@@ -514,13 +516,13 @@ fun main() {
     // https://patorjk.com/software/taag/
     println(
         """
-        .__   __.   ______   .___________. _______     _______.        ___      .______   .______   
-        |  \ |  |  /  __  \  |           ||   ____|   /       |       /   \     |   _  \  |   _  \  
-        |   \|  | |  |  |  | `---|  |----`|  |__     |   (----`      /  ^  \    |  |_)  | |  |_)  | 
-        |  . `  | |  |  |  |     |  |     |   __|     \   \         /  /_\  \   |   ___/  |   ___/  
-        |  |\   | |  `--'  |     |  |     |  |____.----)   |       /  _____  \  |  |      |  |      
-        |__| \__|  \______/      |__|     |_______|_______/       /__/     \__\ | _|      | _|      
-
+        ███████╗ ██████╗ ███╗   ██╗ ██████╗ ███████╗     █████╗ ██████╗ ██████╗ 
+        ██╔════╝██╔═══██╗████╗  ██║██╔════╝ ██╔════╝    ██╔══██╗██╔══██╗██╔══██╗
+        ███████╗██║   ██║██╔██╗ ██║██║  ███╗███████╗    ███████║██████╔╝██████╔╝
+        ╚════██║██║   ██║██║╚██╗██║██║   ██║╚════██║    ██╔══██║██╔═══╝ ██╔═══╝ 
+        ███████║╚██████╔╝██║ ╚████║╚██████╔╝███████║    ██║  ██║██║     ██║     
+        ╚══════╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝    ╚═╝  ╚═╝╚═╝     ╚═╝     
+                                                                                  
     """.trimIndent()
     )
 
