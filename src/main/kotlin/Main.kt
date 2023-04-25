@@ -224,7 +224,7 @@ fun getSortedSongs(songList: MutableList<Song> = songAPI.findAll()): MutableList
 
     when (readln().toIntOrNull()) {
         1 -> songList.sortBy { it.songTitle }
-        2 -> songList.sortBy { it.songRating }
+        2 -> songList.sortByDescending { it.songRating }
         3 -> songList.sortBy { it.songGenre }
         4 -> songList.sortBy { it.isSongExplicit }
         5 -> songList.sortBy { it.updatedAt }
@@ -308,10 +308,10 @@ fun deleteSong() {
 }
 
 /**
- * Toggles the archive status of a song based on its index.
+ * Toggles the explicitify status of a song based on its index.
  */
-fun archiveSong() {
-    logger.debug { "archiveSong() function invoked" }
+fun explicitifySong() {
+    logger.debug { "explicitifySong() function invoked" }
 
     if (songAPI.numberOfSongs() == 0) {
         println("No songs found.")
@@ -320,13 +320,13 @@ fun archiveSong() {
 
     printAllSongs()
 
-    val songIndex: Int = getValidPropertyValue("songIndex", customPrompt = "Enter song index to archive: ", customValidator = { songAPI.isValidIndex(it) })
+    val songIndex: Int = getValidPropertyValue("songIndex", customPrompt = "Enter song index to explicitify: ", customValidator = { songAPI.isValidIndex(it) })
 
     //pass the index of the song and the new song details to SongAPI for updating and check for success.
-    if (songAPI.archiveSong(songIndex)) {
-        println("Archive Successful")
+    if (songAPI.explicitifySong(songIndex)) {
+        println("Explicitify Successful")
     } else {
-        println("Archive Failed")
+        println("Explicitify Failed")
     }
 }
 
@@ -494,7 +494,7 @@ fun runMenu() {
             2 -> viewSong()
             3 -> updateSong()
             4 -> deleteSong()
-            5 -> archiveSong()
+            5 -> explicitifySong()
             6 -> searchSongs()
             7 -> removeMultipleSongs()
             8 -> listSongs()

@@ -53,6 +53,7 @@ object SerializerUtils {
         songs.add(Song("The Power of Love", 1, "Pop", false, ldp("2023-03-15T16:00"), ldp("2023-03-15T14:30")))
         songs.add(Song("Sweet Home Alabama", 2, "Country", false, ldp("2023-03-12T17:15"), ldp("2023-03-12T16:45")))
         songs.add(Song("Enter Sandman", 4, "Metal", false, ldp("2023-03-14T10:30"), ldp("2023-03-14T10:00")))
+        songs.add(Song("Beat It", 3, "Rock", false, ldp("2023-02-14T10:30"), ldp("2023-02-14T10:00")))
 
         return songs
     }

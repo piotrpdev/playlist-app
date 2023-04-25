@@ -3,7 +3,7 @@ package models
 import java.time.LocalDateTime
 
 /**
- * A data class representing a song with a title, rating, genre, and archive status.
+ * A data class representing a song with a title, rating, genre, and explicitify status.
  *
  * @property songTitle The title of the song.
  * @property songRating The rating of the song, where 1 is the lowest and 5 is the highest rating (inclusive).

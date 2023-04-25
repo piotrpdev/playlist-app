@@ -80,5 +80,13 @@
       <updatedAt>2023-03-14T10:30:00</updatedAt>
       <createdAt>2023-03-14T10:00:00</createdAt>
     </models.Song>
+    <models.Song>
+      <songTitle>Beat It</songTitle>
+      <songRating>3</songRating>
+      <songGenre>Rock</songGenre>
+      <isSongExplicit>false</isSongExplicit>
+      <updatedAt>2023-02-14T10:30:00</updatedAt>
+      <createdAt>2023-02-14T10:00:00</createdAt>
+    </models.Song>
   </list>
 </object-stream>
