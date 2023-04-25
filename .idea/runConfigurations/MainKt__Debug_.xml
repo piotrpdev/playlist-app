@@ -3,7 +3,7 @@
     <option name="MAIN_CLASS_NAME" value="MainKt" />
     <module name="songs-app.main" />
     <shortenClasspath name="NONE" />
-    <option name="VM_PARAMETERS" value="-Dorg.slf4j.simpleLogger.defaultLogLevel=DEBUG" />
+    <option name="VM_PARAMETERS" value="-Dorg.slf4j.simpleLogger.defaultLogLevel=DEBUG --add-opens=java.base/java.util=ALL-UNNAMED" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>

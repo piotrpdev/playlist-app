@@ -1,11 +1,18 @@
 package persistence
 
+import models.Artist
 import models.Song
 
 interface Serializer {
     @Throws(Exception::class)
-    fun write(obj: ArrayList<Song>)
+    fun writeSongs(obj: ArrayList<Song>)
 
     @Throws(Exception::class)
-    fun read(): ArrayList<Song>?
+    fun readSongs(): ArrayList<Song>?
+
+    @Throws(Exception::class)
+    fun writeArtists(obj: ArrayList<Artist>)
+
+    @Throws(Exception::class)
+    fun readArtists(): ArrayList<Artist>?
 }

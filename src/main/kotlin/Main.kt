@@ -1,5 +1,6 @@
 import com.jakewharton.picnic.TextBorder
 import com.jakewharton.picnic.renderText
+import controllers.ArtistAPI
 import controllers.SongAPI
 import models.Song
 import mu.KotlinLogging
@@ -9,7 +10,6 @@ import persistence.YAMLSerializer
 import utils.SerializerUtils
 import utils.UITables
 import utils.ValidatorUtils.getValidPropertyValue
-import utils.ValidatorUtils.yesNoIsValid
 import java.io.File
 import java.time.LocalDateTime
 import kotlin.system.exitProcess
@@ -19,6 +19,10 @@ private val logger = KotlinLogging.logger {}
 private val songAPI = SongAPI(XMLSerializer(File("songs.xml")))
 //private val songAPI = SongAPI(JSONSerializer(File("songs.json")))
 //private val songAPI = SongAPI(YAMLSerializer(File("songs.yaml")))
+
+private val artistAPI = ArtistAPI(XMLSerializer(File("artists.xml")))
+//private val artistAPI = ArtistAPI(JSONSerializer(File("artists.json")))
+//private val artistAPI = ArtistAPI(YAMLSerializer(File("artists.yaml")))
 
 /**
  * Prints all songs in a tabular format with rounded borders.
@@ -426,14 +430,14 @@ fun listSongsByRating() {
 /**
  * Loads songs from an external file.
  */
-fun load() {
-    logger.debug { "load() function invoked" }
+fun loadSongs(show: Boolean = true) {
+    logger.debug { "loadSongs() function invoked" }
 
     try {
-        if (songAPI.load()) {
-            println("Songs loaded successfully:")
+        if (songAPI.loadSongs()) {
+            println("Songs loaded successfully")
 
-            printAllSongs()
+            if (show) printAllSongs()
         } else {
             println("Error loading songs, see debug log for more info")
         }
@@ -445,17 +449,133 @@ fun load() {
 /**
  * Saves songs to an external file.
  */
-fun save() {
-    logger.debug { "save() function invoked" }
+fun saveSongs() {
+    logger.debug { "saveSongs() function invoked" }
 
     try {
-        songAPI.store()
+        songAPI.storeSongs()
         println("Songs saved successfully:")
 
         printAllSongs()
     } catch (e: Exception) {
         System.err.println("Error writing to file: $e")
     }
+}
+
+/**
+ * Displays the song menu of the application and reads user input for the selected option.
+ * @return The user's selected option as an Int, or null if an invalid option was entered.
+ */
+fun songMenu(): Int? {
+    logger.debug { "songMenu() function invoked" }
+
+    println(UITables.songMenu)
+
+    print("Enter option: ")
+
+    return readln().toIntOrNull()
+}
+
+/**
+ * Show song menu and handle user choices.
+ */
+fun runSongMenu() {
+    logger.debug { "runSongMenu() function invoked" }
+
+    do {
+        when (val option = songMenu()) {
+            1 -> addSong()
+            2 -> viewSong()
+            3 -> updateSong()
+            4 -> deleteSong()
+            5 -> explicitifySong()
+            6 -> searchSongs()
+            7 -> removeMultipleSongs()
+            8 -> listSongs()
+            9 -> loadSongs()
+            10 -> saveSongs()
+            -99 -> songAPI.seedSongs()
+            0 -> break
+            else -> println("Invalid option entered: $option")
+        }
+    } while (true)
+}
+
+/**
+ * Prints all artists in a tabular format with rounded borders.
+ */
+fun printAllArtists() = println(artistAPI.generateAllArtistsTable().renderText(border = TextBorder.ROUNDED))
+
+/**
+ * Loads artists from an external file.
+ */
+fun loadArtists(show: Boolean = true) {
+    logger.debug { "loadArtists() function invoked" }
+
+    try {
+        if (artistAPI.loadArtists()) {
+            println("Artists loaded successfully")
+
+            if (show) printAllArtists()
+        } else {
+            println("Error loading artists, see debug log for more info")
+        }
+    } catch (e: Exception) {
+        System.err.println("Error reading from file: $e")
+    }
+}
+
+/**
+ * Saves artists to an external file.
+ */
+fun saveArtists() {
+    logger.debug { "saveArtists() function invoked" }
+
+    try {
+        artistAPI.storeArtists()
+        println("Songs saved successfully:")
+
+        printAllArtists()
+    } catch (e: Exception) {
+        System.err.println("Error writing to file: $e")
+    }
+}
+
+/**
+ * Displays the artist menu of the application and reads user input for the selected option.
+ * @return The user's selected option as an Int, or null if an invalid option was entered.
+ */
+fun artistMenu(): Int? {
+    logger.debug { "artistMenu() function invoked" }
+
+    println(UITables.artistMenu)
+
+    print("Enter option: ")
+
+    return readln().toIntOrNull()
+}
+
+/**
+ * Show artist menu and handle user choices.
+ */
+fun runArtistMenu() {
+    logger.debug { "runArtistMenu() function invoked" }
+
+    do {
+        when (val option = artistMenu()) {
+//            1 -> addArtist()
+//            2 -> viewArtist()
+//            3 -> updateArtist()
+//            4 -> deleteArtist()
+//            5 -> searchArtists()
+            6 -> println(artistAPI.listAllArtists())
+            7 -> loadArtists()
+            8 -> saveArtists()
+            -99 -> artistAPI.seedArtists()
+            0 -> break
+            else -> println("Invalid option entered: $option")
+        }
+    } while (true)
 }
 
 /**
@@ -490,19 +610,10 @@ fun runMenu() {
 
     do {
         when (val option = mainMenu()) {
-            1 -> addSong()
-            2 -> viewSong()
-            3 -> updateSong()
-            4 -> deleteSong()
-            5 -> explicitifySong()
-            6 -> searchSongs()
-            7 -> removeMultipleSongs()
-            8 -> listSongs()
-            9 -> load()
-            10 -> save()
-            -98 -> SerializerUtils.generateSeededFiles()
-            -99 -> songAPI.seedSongs()
+            1 -> runSongMenu()
+            2 -> runArtistMenu()
             0 -> exitApp()
+            -99 -> SerializerUtils.generateSeededFiles()
             else -> println("Invalid option entered: $option")
         }
     } while (true)
@@ -526,7 +637,8 @@ fun main() {
     """.trimIndent()
     )
 
-    load()
+    loadSongs(false)
+    loadArtists(false)
 
     runMenu()
 }
