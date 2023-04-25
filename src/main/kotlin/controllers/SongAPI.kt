@@ -60,12 +60,12 @@ class SongAPI(serializerType: Serializer) {
     } != null
 
     /**
-     * Archives a song at a given index.
+     * Explicitifies a song at a given index.
      *
-     * @param indexToUpdate The index of the song to archive.
+     * @param indexToUpdate The index of the song to explicitify.
      * @return True if the song was explicit successfully, false otherwise.
      */
-    fun archiveSong(indexToUpdate: Int): Boolean = findSong(indexToUpdate)?.apply {
+    fun explicitifySong(indexToUpdate: Int): Boolean = findSong(indexToUpdate)?.apply {
         isSongExplicit = true
         updatedAt = LocalDateTime.now()
     } != null

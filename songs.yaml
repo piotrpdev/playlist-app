@@ -159,3 +159,19 @@
   - 14
   - 10
   - 0
+- songTitle: "Beat It"
+  songRating: 3
+  songGenre: "Rock"
+  isSongExplicit: false
+  updatedAt:
+  - 2023
+  - 2
+  - 14
+  - 10
+  - 30
+  createdAt:
+  - 2023
+  - 2
+  - 14
+  - 10
+  - 0

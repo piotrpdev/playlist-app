@@ -51,7 +51,7 @@ object UITables {
             }
             row {
                 cell("5")
-                cell("Archive Song")
+                cell("Explicitify Song")
             }
             row {
                 cell("")

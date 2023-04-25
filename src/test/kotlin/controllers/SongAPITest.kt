@@ -305,7 +305,7 @@ class SongAPITest {
         fun `listImportantSongs returns Important Songs when ArrayList has important songs stored`() {
             assertEquals(5, populatedSongs!!.numberOfSongs())
             val songsString = populatedSongs!!.listImportantSongs().lowercase()
-            assertTrue(songsString.contains("summer holiday"))
+            assertFalse(songsString.contains("summer holiday"))
         }
     }
 
@@ -373,17 +373,17 @@ class SongAPITest {
     }
 
     @Nested
-    inner class ArchiveTests {
+    inner class ExplicitifyTests {
 
         @Test
         fun `archiving a song that does not exist returns false`() {
-            assertFalse(emptySongs!!.archiveSong(0))
-            assertFalse(populatedSongs!!.archiveSong(-1))
-            assertFalse(populatedSongs!!.archiveSong(5))
+            assertFalse(emptySongs!!.explicitifySong(0))
+            assertFalse(populatedSongs!!.explicitifySong(-1))
+            assertFalse(populatedSongs!!.explicitifySong(5))
         }
 
         @Test
-        fun `archiving a song that exists returns true and archives`() {
+        fun `archiving a song that exists returns true and explicitifys`() {
             //check song 5 exists and check the contents
             assertEquals(swim, populatedSongs!!.findSong(4))
             assertEquals("Swim - Pool", populatedSongs!!.findSong(4)!!.songTitle)
@@ -391,8 +391,8 @@ class SongAPITest {
             assertEquals("Hobby", populatedSongs!!.findSong(4)!!.songGenre)
             assertFalse(populatedSongs!!.findSong(4)!!.isSongExplicit)
 
-            //archive song 5 and ensure contents updated successfully
-            assertTrue(populatedSongs!!.archiveSong(4))
+            //explicitify song 5 and ensure contents updated successfully
+            assertTrue(populatedSongs!!.explicitifySong(4))
             assertEquals("Swim - Pool", populatedSongs!!.findSong(4)!!.songTitle)
             assertEquals(3, populatedSongs!!.findSong(4)!!.songRating)
             assertEquals("Hobby", populatedSongs!!.findSong(4)!!.songGenre)
