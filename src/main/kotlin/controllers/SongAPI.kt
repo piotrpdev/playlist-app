@@ -94,7 +94,6 @@ class SongAPI(serializerType: Serializer) {
     else
         generateMultipleSongsTable(songs.filter { song -> !song.isSongExplicit }).renderText(border = TextBorder.ROUNDED)
 
-
     /**
      * Lists all explicit songs in a formatted string.
      *
@@ -252,7 +251,6 @@ class SongAPI(serializerType: Serializer) {
      */
     fun generateSongTable(song: Song): Table = songInfoTemplate("Song Information", listOf(song))
 
-
     /**
      * Generates a table containing multiple songs' information.
      *
@@ -267,7 +265,6 @@ class SongAPI(serializerType: Serializer) {
      * @return A table containing all songs' information.
      */
     fun generateAllSongsTable(): Table = songInfoTemplate("All Song Information", songs, true)
-
 
     /**
      * Seeds the songs with a predefined set of songs.

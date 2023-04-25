@@ -37,7 +37,7 @@ object ValidatorUtils {
     // private fun formatPropertyName(propertyName: String): String = propertyName.split("(?=\\p{Upper})").joinToString(" ").lowercase()
 
     @JvmStatic
-    private fun def(prop: Any?) = if (prop != null) " (${prop})" else ""
+    private fun def(prop: Any?) = if (prop != null) " ($prop)" else ""
 
     @JvmStatic
     fun propertyNameToPrompt(propertyName: String, oldPropertyValue: Any?): String {

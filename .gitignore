@@ -79,4 +79,7 @@ kotlin-ide/
 songs.test.json
 songs.test.yaml
 songs.test.xml
+artists.test.json
+artists.test.yaml
+artists.test.xml
 /.idea/discord.xml

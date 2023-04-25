@@ -81,7 +81,7 @@ class ArtistAPI(serializerType: Serializer) {
      * @param rating The rating to filter artists by.
      * @return The number of artists with the specified rating.
      */
-    //fun numberOfArtistsByRating(rating: Int): Int = artists.count { it.artistRating == rating }
+    // fun numberOfArtistsByRating(rating: Int): Int = artists.count { it.artistRating == rating }
 
     /**
      * Retrieves the total number of artists.
@@ -154,7 +154,6 @@ class ArtistAPI(serializerType: Serializer) {
      */
     fun generateArtistTable(artist: Artist): Table = artistInfoTemplate("Artist Information", listOf(artist))
 
-
     /**
      * Generates a table containing multiple artists' information.
      *
@@ -169,7 +168,6 @@ class ArtistAPI(serializerType: Serializer) {
      * @return A table containing all artists' information.
      */
     fun generateAllArtistsTable(): Table = artistInfoTemplate("All Artist Information", artists, true)
-
 
     /**
      * Seeds the artists with a predefined set of artists.
