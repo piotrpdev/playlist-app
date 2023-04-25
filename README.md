@@ -9,17 +9,17 @@ _(Project for SETU Software Development Tools module.)_
 ## Features
 
 - [x] CRUD
-    - [x] (C) Add songs
-    - [x] (R) View songs
-        - [x] List songs
-    - [x] (U) Update songs
-    - [x] (D) Remove songs
+    - [x] (C) Add songs/artists
+    - [x] (R) View songs/artists
+        - [x] List songs/artists
+    - [x] (U) Update songs/artists
+    - [x] (D) Remove songs/artists
 - [x] Advanced features
-    - [x] Search songs
-    - [x] Sort songs
-    - [x] Filter songs
-    - [x] *Save songs to file
-    - [x] *Load songs from file
+    - [x] Search songs/artists
+    - [x] Sort songs/artists
+    - [x] Filter songs/artists
+    - [x] *Save songs/artists to file
+    - [x] *Load songs/artists from file
 - [x] Nice table-based UI courtesy of [Picnic](https://github.com/JakeWharton/picnic)
 
 &ast; _Implemented in XML, JSON, and YAML_
@@ -32,12 +32,13 @@ Clone the project
   git clone https://github.com/piotrpdev/songs-app
 ```
 
-Then you can do one of the following:
+Then you can do the following:
 
-- Run the `main.kt` file in your IDE
 - Run the `MainKt` or `MainKt (Debug)` run script in IntelliJ IDEA
 
 > Run with `-Dorg.slf4j.simpleLogger.defaultLogLevel=DEBUG` or `MainKt (Debug)` to see debug logs
+
+> Warning: If not running one of the provided scripts, you need to manually use the `--add-opens=java.base/java.util=ALL-UNNAMED` flag for XStream to work.
 
 ## Authors
 
