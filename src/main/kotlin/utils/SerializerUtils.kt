@@ -1,6 +1,8 @@
 package utils
 
+import controllers.ArtistAPI
 import controllers.SongAPI
+import models.Artist
 import models.Song
 import persistence.JSONSerializer
 import persistence.XMLSerializer
@@ -27,9 +29,9 @@ object SerializerUtils {
      * @return The ArrayList of Song objects if the given object is of the correct type, null otherwise.
      */
     @JvmStatic
-    fun isArrayList(obj: Any): ArrayList<Song>? = if (obj is ArrayList<*> && obj.all { it is Song }) {
+    inline fun <reified T> isArrayList(obj: Any): ArrayList<T>? = if (obj is ArrayList<*> && obj.all { it is T }) {
         @Suppress("UNCHECKED_CAST")
-        obj as ArrayList<Song>
+        obj as ArrayList<T>
     } else {
         null
     }
@@ -59,6 +61,27 @@ object SerializerUtils {
     }
 
     /**
+     * Returns an ArrayList of Artist objects containing seeded data.
+     *
+     * @return The ArrayList of seeded Artist objects.
+     */
+    @JvmStatic
+    fun getSeededArtists(): ArrayList<Artist> {
+        val artists = ArrayList<Artist>()
+
+        artists.add(Artist("Michael Jackson", ldp("1964-02-14T10:30"), listOf("Pop", "Rock", "Funk")))
+        artists.add(Artist("AC/DC", ldp("1973-02-14T10:30"), listOf("Rock", "Metal")))
+        artists.add(Artist("Eminem", ldp("1988-02-14T10:30"), listOf("Hip Hop", "Rap")))
+        artists.add(Artist("Guns N' Roses", ldp("1985-02-14T10:30"), listOf("Rock", "Metal")))
+        artists.add(Artist("The Beatles", ldp("1960-02-14T10:30"), listOf("Rock", "Pop")))
+        artists.add(Artist("Ariana Grande", ldp("2008-02-14T10:30"), listOf("Pop", "R&B")))
+        artists.add(Artist("Kendrick Lamar", ldp("2004-02-14T10:30"), listOf("Hip Hop", "Rap")))
+        artists.add(Artist("Taylor Swift", ldp("2004-02-14T10:30"), listOf("Pop", "Country")))
+
+        return artists
+    }
+
+    /**
      * Generates and stores seed data as XML, JSON, and YAML files.
      */
     @JvmStatic
@@ -69,6 +92,14 @@ object SerializerUtils {
         songAPIs.add(SongAPI(JSONSerializer(File("songs.json"))))
         songAPIs.add(SongAPI(YAMLSerializer(File("songs.yaml"))))
 
-        songAPIs.forEach { it.seedSongs(); it.store() }
+        songAPIs.forEach { it.seedSongs(); it.storeSongs() }
+
+        val artistAPIs = ArrayList<ArtistAPI>()
+
+        artistAPIs.add(ArtistAPI(XMLSerializer(File("artists.xml"))))
+        artistAPIs.add(ArtistAPI(JSONSerializer(File("artists.json"))))
+        artistAPIs.add(ArtistAPI(YAMLSerializer(File("artists.yaml"))))
+
+        artistAPIs.forEach { it.seedArtists(); it.storeArtists() }
     }
 }

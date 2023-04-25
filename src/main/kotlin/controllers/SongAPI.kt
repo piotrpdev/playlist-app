@@ -283,8 +283,8 @@ class SongAPI(serializerType: Serializer) {
      * @throws Exception if an error occurs while loading the songs.
      */
     @Throws(Exception::class)
-    fun load(): Boolean =
-        serializer.read()?.also {
+    fun loadSongs(): Boolean =
+        serializer.readSongs()?.also {
             songs = it
         } != null
 
@@ -294,5 +294,5 @@ class SongAPI(serializerType: Serializer) {
      * @throws Exception if an error occurs while storing the songs.
      */
     @Throws(Exception::class)
-    fun store() = serializer.write(songs)
+    fun storeSongs() = serializer.writeSongs(songs)
 }

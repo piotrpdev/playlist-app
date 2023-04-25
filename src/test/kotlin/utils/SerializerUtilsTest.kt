@@ -65,11 +65,11 @@ class SerializerUtilsTest {
         fun `saving and loading an empty collection in XML doesn't crash app`() {
             // Saving an empty songs.XML file.
             val storingSongs = SongAPI(XMLSerializer(File("songs.test.xml")))
-            storingSongs.store()
+            storingSongs.storeSongs()
 
             //Loading the empty songs.test.xml file into a new object
             val loadedSongs = SongAPI(XMLSerializer(File("songs.test.xml")))
-            loadedSongs.load()
+            loadedSongs.loadSongs()
 
             //Comparing the source of the songs (storingSongs) with the XML loaded songs (loadedSongs)
             assertEquals(0, storingSongs.numberOfSongs())
@@ -84,11 +84,11 @@ class SerializerUtilsTest {
             storingSongs.add(testApp!!)
             storingSongs.add(swim!!)
             storingSongs.add(summerHoliday!!)
-            storingSongs.store()
+            storingSongs.storeSongs()
 
             //Loading songs.test.xml into a different collection
             val loadedSongs = SongAPI(XMLSerializer(File("songs.test.xml")))
-            loadedSongs.load()
+            loadedSongs.loadSongs()
 
             //Comparing the source of the songs (storingSongs) with the XML loaded songs (loadedSongs)
             assertEquals(3, storingSongs.numberOfSongs())
@@ -103,11 +103,11 @@ class SerializerUtilsTest {
         fun `saving and loading an empty collection in JSON doesn't crash app`() {
             // Saving an empty songs.test.json file.
             val storingSongs = SongAPI(JSONSerializer(File("songs.test.json")))
-            storingSongs.store()
+            storingSongs.storeSongs()
 
             //Loading the empty songs.test.json file into a new object
             val loadedSongs = SongAPI(JSONSerializer(File("songs.test.json")))
-            loadedSongs.load()
+            loadedSongs.loadSongs()
 
             //Comparing the source of the songs (storingSongs) with the json loaded songs (loadedSongs)
             assertEquals(0, storingSongs.numberOfSongs())
@@ -122,11 +122,11 @@ class SerializerUtilsTest {
             storingSongs.add(testApp!!)
             storingSongs.add(swim!!)
             storingSongs.add(summerHoliday!!)
-            storingSongs.store()
+            storingSongs.storeSongs()
 
             //Loading songs.test.json into a different collection
             val loadedSongs = SongAPI(JSONSerializer(File("songs.test.json")))
-            loadedSongs.load()
+            loadedSongs.loadSongs()
 
             //Comparing the source of the songs (storingSongs) with the json loaded songs (loadedSongs)
             assertEquals(3, storingSongs.numberOfSongs())
@@ -141,11 +141,11 @@ class SerializerUtilsTest {
         fun `saving and loading an empty collection in YAML doesn't crash app`() {
             // Saving an empty songs.test.yaml file.
             val storingSongs = SongAPI(YAMLSerializer(File("songs.test.yaml")))
-            storingSongs.store()
+            storingSongs.storeSongs()
 
             //Loading the empty songs.test.yaml file into a new object
             val loadedSongs = SongAPI(YAMLSerializer(File("songs.test.yaml")))
-            loadedSongs.load()
+            loadedSongs.loadSongs()
 
             //Comparing the source of the songs (storingSongs) with the yaml loaded songs (loadedSongs)
             assertEquals(0, storingSongs.numberOfSongs())
@@ -160,11 +160,11 @@ class SerializerUtilsTest {
             storingSongs.add(testApp!!)
             storingSongs.add(swim!!)
             storingSongs.add(summerHoliday!!)
-            storingSongs.store()
+            storingSongs.storeSongs()
 
             //Loading songs.test.yaml into a different collection
             val loadedSongs = SongAPI(YAMLSerializer(File("songs.test.yaml")))
-            loadedSongs.load()
+            loadedSongs.loadSongs()
 
             //Comparing the source of the songs (storingSongs) with the yaml loaded songs (loadedSongs)
             assertEquals(3, storingSongs.numberOfSongs())
@@ -187,16 +187,16 @@ class SerializerUtilsTest {
 
             @Test
             fun `isArrayList() returns null if obj is not an ArrayList`() {
-                assertNull(isArrayList("Hello"))
-                assertNull(isArrayList(1))
-                assertNull(isArrayList(1.0))
-                assertNull(isArrayList(true))
-                assertNull(isArrayList(false))
-                assertNull(isArrayList(testApp!!))
-                assertNull(isArrayList(swim!!))
-                assertNull(isArrayList(summerHoliday!!))
-                assertNull(isArrayList(emptySongs!!))
-                assertNull(isArrayList(populatedSongs!!))
+                assertNull(isArrayList<Any>("Hello"))
+                assertNull(isArrayList<Any>(1))
+                assertNull(isArrayList<Any>(1.0))
+                assertNull(isArrayList<Any>(true))
+                assertNull(isArrayList<Any>(false))
+                assertNull(isArrayList<Any>(testApp!!))
+                assertNull(isArrayList<Any>(swim!!))
+                assertNull(isArrayList<Any>(summerHoliday!!))
+                assertNull(isArrayList<Any>(emptySongs!!))
+                assertNull(isArrayList<Any>(populatedSongs!!))
             }
 
             @Test
@@ -205,7 +205,7 @@ class SerializerUtilsTest {
                 arrayList.add(testApp!!)
                 arrayList.add(swim!!)
                 arrayList.add(summerHoliday!!)
-                Assertions.assertEquals(arrayList, isArrayList(arrayList))
+                Assertions.assertEquals(arrayList, isArrayList<Any>(arrayList))
             }
 
             @Test

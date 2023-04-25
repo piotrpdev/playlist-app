@@ -4,6 +4,7 @@ import com.jakewharton.picnic.TextAlignment
 import com.jakewharton.picnic.TextBorder
 import com.jakewharton.picnic.renderText
 import com.jakewharton.picnic.table
+import models.Artist
 import models.Song
 
 // DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).format(date)
@@ -13,9 +14,9 @@ import models.Song
  */
 object UITables {
     /**
-     * The main menu table, displayed as a formatted string.
+     * The song menu table, displayed as a formatted string.
      */
-    val mainMenu = table {
+    val songMenu = table {
         cellStyle {
             alignment = TextAlignment.MiddleRight
             paddingLeft = 1
@@ -25,7 +26,7 @@ object UITables {
         }
         header {
             row {
-                cell("Songs Menu") {
+                cell("Song Menu") {
                     columnSpan = 2
                     alignment = TextAlignment.MiddleCenter
                     border = true
@@ -84,6 +85,130 @@ object UITables {
             row {
                 cell("10")
                 cell("Save Songs to File")
+                cellStyle {
+                    borderBottom = true
+                }
+            }
+        }
+        footer {
+            row {
+                cell("0")
+                cell("Exit")
+                cellStyle {
+                    borderBottom = true
+                }
+            }
+        }
+    }.renderText(border = TextBorder.ROUNDED)
+
+    /**
+     * The artist menu table, displayed as a formatted string.
+     */
+    val artistMenu = table {
+        cellStyle {
+            alignment = TextAlignment.MiddleRight
+            paddingLeft = 1
+            paddingRight = 1
+            borderLeft = true
+            borderRight = true
+        }
+        header {
+            row {
+                cell("Artist Menu") {
+                    columnSpan = 2
+                    alignment = TextAlignment.MiddleCenter
+                    border = true
+                }
+            }
+        }
+        body {
+            row {
+                cell("1")
+                cell("Add Artist")
+            }
+            row {
+                cell("2")
+                cell("View Artist")
+            }
+            row {
+                cell("3")
+                cell("Update Artist")
+            }
+            row {
+                cell("4")
+                cell("Delete Artist")
+            }
+            row {
+                cell("")
+                cell("")
+            }
+            row {
+                cell("5")
+                cell("Search Artists")
+            }
+            row {
+                cell("")
+                cell("")
+            }
+            row {
+                cell("6")
+                cell("List Artists")
+            }
+            row {
+                cell("")
+                cell("")
+            }
+            row {
+                cell("7")
+                cell("Load Artists from File")
+            }
+            row {
+                cell("8")
+                cell("Save Artists to File")
+                cellStyle {
+                    borderBottom = true
+                }
+            }
+        }
+        footer {
+            row {
+                cell("0")
+                cell("Exit")
+                cellStyle {
+                    borderBottom = true
+                }
+            }
+        }
+    }.renderText(border = TextBorder.ROUNDED)
+
+    /**
+     * The main menu table, displayed as a formatted string.
+     */
+    val mainMenu = table {
+        cellStyle {
+            alignment = TextAlignment.MiddleRight
+            paddingLeft = 1
+            paddingRight = 1
+            borderLeft = true
+            borderRight = true
+        }
+        header {
+            row {
+                cell("Main Menu") {
+                    columnSpan = 2
+                    alignment = TextAlignment.MiddleCenter
+                    border = true
+                }
+            }
+        }
+        body {
+            row {
+                cell("1")
+                cell("Songs Menu")
+            }
+            row {
+                cell("2")
+                cell("Artists Menu")
                 cellStyle {
                     borderBottom = true
                 }
@@ -229,6 +354,73 @@ object UITables {
                     cell(if (it.isSongExplicit) "Yes" else "No") {}
                     cell(it.updatedAt.toString()) {}
                     cell(it.createdAt.toString()) {}
+                    if (index == data.size - 1) {
+                        cellStyle {
+                            borderBottom = true
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Generates a table containing song information, using a predefined template.
+     *
+     * @param title The title to display in the table.
+     * @param data The list of songs to display in the table.
+     * @param allArtists A flag indicating whether to display all songs (default is false).
+     * @return A table containing the song information.
+     */
+    @JvmStatic
+    fun artistInfoTemplate(title: String, data: List<Artist>, allArtists: Boolean) = table {
+        cellStyle {
+            alignment = TextAlignment.MiddleRight
+            paddingLeft = 1
+            paddingRight = 1
+            borderLeft = true
+            borderRight = true
+        }
+        header {
+            row {
+                cell(title) {
+                    columnSpan = if (allArtists) 4 else 3
+                    alignment = TextAlignment.MiddleCenter
+                    border = true
+                }
+            }
+            row {
+                cellStyle {
+                    border = true
+                    alignment = TextAlignment.BottomLeft
+                }
+                if (allArtists) {
+                    cell("Index") {
+                        alignment = TextAlignment.MiddleCenter
+                    }
+                }
+                cell("Name") {
+                    alignment = TextAlignment.MiddleCenter
+                }
+                cell("Founded Date") {
+                    alignment = TextAlignment.MiddleCenter
+                }
+                cell("Genres") {
+                    alignment = TextAlignment.MiddleCenter
+                }
+            }
+        }
+        body {
+            data.forEachIndexed { index, it ->
+                row {
+                    if (allArtists) {
+                        cell(index.toString()) {
+                            alignment = TextAlignment.MiddleCenter
+                        }
+                    }
+                    cell(it.name) {}
+                    cell(it.foundedDate.toString()) {}
+                    cell(it.genres.joinToString()) {}
                     if (index == data.size - 1) {
                         cellStyle {
                             borderBottom = true

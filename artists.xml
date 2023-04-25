@@ -1,0 +1,85 @@
+<object-stream>
+  <list>
+    <models.Artist>
+      <name>Michael Jackson</name>
+      <foundedDate>1964-02-14T10:30:00</foundedDate>
+      <genres class="java.util.Arrays$ArrayList">
+        <a class="string-array">
+          <string>Pop</string>
+          <string>Rock</string>
+          <string>Funk</string>
+        </a>
+      </genres>
+    </models.Artist>
+    <models.Artist>
+      <name>AC/DC</name>
+      <foundedDate>1973-02-14T10:30:00</foundedDate>
+      <genres class="java.util.Arrays$ArrayList">
+        <a class="string-array">
+          <string>Rock</string>
+          <string>Metal</string>
+        </a>
+      </genres>
+    </models.Artist>
+    <models.Artist>
+      <name>Eminem</name>
+      <foundedDate>1988-02-14T10:30:00</foundedDate>
+      <genres class="java.util.Arrays$ArrayList">
+        <a class="string-array">
+          <string>Hip Hop</string>
+          <string>Rap</string>
+        </a>
+      </genres>
+    </models.Artist>
+    <models.Artist>
+      <name>Guns N&apos; Roses</name>
+      <foundedDate>1985-02-14T10:30:00</foundedDate>
+      <genres class="java.util.Arrays$ArrayList">
+        <a class="string-array">
+          <string>Rock</string>
+          <string>Metal</string>
+        </a>
+      </genres>
+    </models.Artist>
+    <models.Artist>
+      <name>The Beatles</name>
+      <foundedDate>1960-02-14T10:30:00</foundedDate>
+      <genres class="java.util.Arrays$ArrayList">
+        <a class="string-array">
+          <string>Rock</string>
+          <string>Pop</string>
+        </a>
+      </genres>
+    </models.Artist>
+    <models.Artist>
+      <name>Ariana Grande</name>
+      <foundedDate>2008-02-14T10:30:00</foundedDate>
+      <genres class="java.util.Arrays$ArrayList">
+        <a class="string-array">
+          <string>Pop</string>
+          <string>R&amp;B</string>
+        </a>
+      </genres>
+    </models.Artist>
+    <models.Artist>
+      <name>Kendrick Lamar</name>
+      <foundedDate>2004-02-14T10:30:00</foundedDate>
+      <genres class="java.util.Arrays$ArrayList">
+        <a class="string-array">
+          <string>Hip Hop</string>
+          <string>Rap</string>
+        </a>
+      </genres>
+    </models.Artist>
+    <models.Artist>
+      <name>Taylor Swift</name>
+      <foundedDate>2004-02-14T10:30:00</foundedDate>
+      <genres class="java.util.Arrays$ArrayList">
+        <a class="string-array">
+          <string>Pop</string>
+          <string>Country</string>
+        </a>
+      </genres>
+    </models.Artist>
+  </list>
+</object-stream>
