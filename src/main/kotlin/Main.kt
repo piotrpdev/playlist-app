@@ -4,9 +4,7 @@ import controllers.ArtistAPI
 import controllers.SongAPI
 import models.Song
 import mu.KotlinLogging
-import persistence.JSONSerializer
 import persistence.XMLSerializer
-import persistence.YAMLSerializer
 import utils.SerializerUtils
 import utils.UITables
 import utils.ValidatorUtils.getValidPropertyValue
@@ -17,12 +15,12 @@ import kotlin.system.exitProcess
 private val logger = KotlinLogging.logger {}
 
 private val songAPI = SongAPI(XMLSerializer(File("songs.xml")))
-//private val songAPI = SongAPI(JSONSerializer(File("songs.json")))
-//private val songAPI = SongAPI(YAMLSerializer(File("songs.yaml")))
+// private val songAPI = SongAPI(JSONSerializer(File("songs.json")))
+// private val songAPI = SongAPI(YAMLSerializer(File("songs.yaml")))
 
 private val artistAPI = ArtistAPI(XMLSerializer(File("artists.xml")))
-//private val artistAPI = ArtistAPI(JSONSerializer(File("artists.json")))
-//private val artistAPI = ArtistAPI(YAMLSerializer(File("artists.yaml")))
+// private val artistAPI = ArtistAPI(JSONSerializer(File("artists.json")))
+// private val artistAPI = ArtistAPI(YAMLSerializer(File("artists.yaml")))
 
 /**
  * Prints all songs in a tabular format with rounded borders.
@@ -302,7 +300,7 @@ fun deleteSong() {
 
     val songIndex: Int = getValidPropertyValue("songIndex", customPrompt = "Enter song index to delete: ", customValidator = { songAPI.isValidIndex(it) })
 
-    //pass the index of the song to SongAPI for deleting and check for success.
+    // pass the index of the song to SongAPI for deleting and check for success.
     val songToDelete = songAPI.deleteSong(songIndex)
     if (songToDelete != null) {
         println("Delete Successful! Deleted song: ${songToDelete.songTitle}")
@@ -326,7 +324,7 @@ fun explicitifySong() {
 
     val songIndex: Int = getValidPropertyValue("songIndex", customPrompt = "Enter song index to explicitify: ", customValidator = { songAPI.isValidIndex(it) })
 
-    //pass the index of the song and the new song details to SongAPI for updating and check for success.
+    // pass the index of the song and the new song details to SongAPI for updating and check for success.
     if (songAPI.explicitifySong(songIndex)) {
         println("Explicitify Successful")
     } else {
@@ -634,7 +632,7 @@ fun main() {
         ███████║╚██████╔╝██║ ╚████║╚██████╔╝███████║    ██║  ██║██║     ██║     
         ╚══════╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝    ╚═╝  ╚═╝╚═╝     ╚═╝     
                                                                                   
-    """.trimIndent()
+        """.trimIndent()
     )
 
     loadSongs(false)

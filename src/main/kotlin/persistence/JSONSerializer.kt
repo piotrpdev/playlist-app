@@ -2,7 +2,6 @@ package persistence
 
 import com.thoughtworks.xstream.XStream
 import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver
-import com.thoughtworks.xstream.io.xml.DomDriver
 import models.Artist
 import models.Song
 import utils.SerializerUtils.isArrayList

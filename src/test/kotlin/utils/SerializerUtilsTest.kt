@@ -2,8 +2,10 @@ package utils
 
 import controllers.SongAPI
 import models.Song
-import org.junit.jupiter.api.*
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Nested
+import org.junit.jupiter.api.Test
 import persistence.JSONSerializer
 import persistence.XMLSerializer
 import persistence.YAMLSerializer
@@ -14,6 +16,8 @@ import utils.SerializerUtils.ldp
 import java.io.File
 import java.time.LocalDateTime
 import kotlin.test.assertEquals
+import kotlin.test.assertNull
+import kotlin.test.assertTrue
 
 class SerializerUtilsTest {
 
@@ -35,7 +39,7 @@ class SerializerUtilsTest {
         populatedSongs = TestUtils.populatedSongs()
         emptySongs = TestUtils.emptySongs()
 
-        //adding 5 Song to the songs api
+        // adding 5 Song to the songs api
         populatedSongs!!.add(learnKotlin!!)
         populatedSongs!!.add(summerHoliday!!)
         populatedSongs!!.add(codeApp!!)
@@ -67,11 +71,11 @@ class SerializerUtilsTest {
             val storingSongs = SongAPI(XMLSerializer(File("songs.test.xml")))
             storingSongs.storeSongs()
 
-            //Loading the empty songs.test.xml file into a new object
+            // Loading the empty songs.test.xml file into a new object
             val loadedSongs = SongAPI(XMLSerializer(File("songs.test.xml")))
             loadedSongs.loadSongs()
 
-            //Comparing the source of the songs (storingSongs) with the XML loaded songs (loadedSongs)
+            // Comparing the source of the songs (storingSongs) with the XML loaded songs (loadedSongs)
             assertEquals(0, storingSongs.numberOfSongs())
             assertEquals(0, loadedSongs.numberOfSongs())
             assertEquals(storingSongs.numberOfSongs(), loadedSongs.numberOfSongs())
@@ -86,11 +90,11 @@ class SerializerUtilsTest {
             storingSongs.add(summerHoliday!!)
             storingSongs.storeSongs()
 
-            //Loading songs.test.xml into a different collection
+            // Loading songs.test.xml into a different collection
             val loadedSongs = SongAPI(XMLSerializer(File("songs.test.xml")))
             loadedSongs.loadSongs()
 
-            //Comparing the source of the songs (storingSongs) with the XML loaded songs (loadedSongs)
+            // Comparing the source of the songs (storingSongs) with the XML loaded songs (loadedSongs)
             assertEquals(3, storingSongs.numberOfSongs())
             assertEquals(3, loadedSongs.numberOfSongs())
             assertEquals(storingSongs.numberOfSongs(), loadedSongs.numberOfSongs())
@@ -105,11 +109,11 @@ class SerializerUtilsTest {
             val storingSongs = SongAPI(JSONSerializer(File("songs.test.json")))
             storingSongs.storeSongs()
 
-            //Loading the empty songs.test.json file into a new object
+            // Loading the empty songs.test.json file into a new object
             val loadedSongs = SongAPI(JSONSerializer(File("songs.test.json")))
             loadedSongs.loadSongs()
 
-            //Comparing the source of the songs (storingSongs) with the json loaded songs (loadedSongs)
+            // Comparing the source of the songs (storingSongs) with the json loaded songs (loadedSongs)
             assertEquals(0, storingSongs.numberOfSongs())
             assertEquals(0, loadedSongs.numberOfSongs())
             assertEquals(storingSongs.numberOfSongs(), loadedSongs.numberOfSongs())
@@ -124,11 +128,11 @@ class SerializerUtilsTest {
             storingSongs.add(summerHoliday!!)
             storingSongs.storeSongs()
 
-            //Loading songs.test.json into a different collection
+            // Loading songs.test.json into a different collection
             val loadedSongs = SongAPI(JSONSerializer(File("songs.test.json")))
             loadedSongs.loadSongs()
 
-            //Comparing the source of the songs (storingSongs) with the json loaded songs (loadedSongs)
+            // Comparing the source of the songs (storingSongs) with the json loaded songs (loadedSongs)
             assertEquals(3, storingSongs.numberOfSongs())
             assertEquals(3, loadedSongs.numberOfSongs())
             assertEquals(storingSongs.numberOfSongs(), loadedSongs.numberOfSongs())
@@ -143,11 +147,11 @@ class SerializerUtilsTest {
             val storingSongs = SongAPI(YAMLSerializer(File("songs.test.yaml")))
             storingSongs.storeSongs()
 
-            //Loading the empty songs.test.yaml file into a new object
+            // Loading the empty songs.test.yaml file into a new object
             val loadedSongs = SongAPI(YAMLSerializer(File("songs.test.yaml")))
             loadedSongs.loadSongs()
 
-            //Comparing the source of the songs (storingSongs) with the yaml loaded songs (loadedSongs)
+            // Comparing the source of the songs (storingSongs) with the yaml loaded songs (loadedSongs)
             assertEquals(0, storingSongs.numberOfSongs())
             assertEquals(0, loadedSongs.numberOfSongs())
             assertEquals(storingSongs.numberOfSongs(), loadedSongs.numberOfSongs())
@@ -162,11 +166,11 @@ class SerializerUtilsTest {
             storingSongs.add(summerHoliday!!)
             storingSongs.storeSongs()
 
-            //Loading songs.test.yaml into a different collection
+            // Loading songs.test.yaml into a different collection
             val loadedSongs = SongAPI(YAMLSerializer(File("songs.test.yaml")))
             loadedSongs.loadSongs()
 
-            //Comparing the source of the songs (storingSongs) with the yaml loaded songs (loadedSongs)
+            // Comparing the source of the songs (storingSongs) with the yaml loaded songs (loadedSongs)
             assertEquals(3, storingSongs.numberOfSongs())
             assertEquals(3, loadedSongs.numberOfSongs())
             assertEquals(storingSongs.numberOfSongs(), loadedSongs.numberOfSongs())
@@ -181,8 +185,8 @@ class SerializerUtilsTest {
             @Test
             fun `getSeededSongs() returns a list of 11 songs`() {
                 val seededSongs = getSeededSongs()
-                Assertions.assertEquals(11, seededSongs.size)
-                Assertions.assertEquals(11, seededSongs.distinct().size)
+                assertEquals(11, seededSongs.size)
+                assertEquals(11, seededSongs.distinct().size)
             }
 
             @Test
@@ -205,13 +209,13 @@ class SerializerUtilsTest {
                 arrayList.add(testApp!!)
                 arrayList.add(swim!!)
                 arrayList.add(summerHoliday!!)
-                Assertions.assertEquals(arrayList, isArrayList<Any>(arrayList))
+                isArrayList<Song>(arrayList)?.let { assertEquals(arrayList, it) }
             }
 
             @Test
             fun `ldp() parses LocalDateTime correctly`() {
                 val date = LocalDateTime.of(2020, 1, 1, 1, 1)
-                Assertions.assertEquals(date, ldp("2020-01-01T01:01"))
+                assertEquals(date, ldp("2020-01-01T01:01"))
             }
 
             @Test

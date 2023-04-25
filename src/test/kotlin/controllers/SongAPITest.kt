@@ -2,10 +2,15 @@ package controllers
 
 import com.jakewharton.picnic.renderText
 import models.Song
-import org.junit.jupiter.api.*
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Nested
+import org.junit.jupiter.api.Test
 import java.io.File
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertNull
+import kotlin.test.assertTrue
 
 class SongAPITest {
 
@@ -27,7 +32,7 @@ class SongAPITest {
         populatedSongs = TestUtils.populatedSongs()
         emptySongs = TestUtils.emptySongs()
 
-        //adding 5 Song to the songs api
+        // adding 5 Song to the songs api
         populatedSongs!!.add(learnKotlin!!)
         populatedSongs!!.add(summerHoliday!!)
         populatedSongs!!.add(codeApp!!)
@@ -274,7 +279,7 @@ class SongAPITest {
         @Test
         fun `listStaleSongs returns No Stale Songs Stored message when ArrayList has no stale songs stored`() {
             assertEquals(5, populatedSongs!!.numberOfSongs())
-            assertTrue(populatedSongs!!.listStaleSongs(365*100).lowercase().contains("no stale songs"))
+            assertTrue(populatedSongs!!.listStaleSongs(365 * 100).lowercase().contains("no stale songs"))
         }
 
         @Test
@@ -358,13 +363,13 @@ class SongAPITest {
 
         @Test
         fun `updating a song that exists returns true and updates`() {
-            //check song 5 exists and check the contents
+            // check song 5 exists and check the contents
             assertEquals(swim, populatedSongs!!.findSong(4))
             assertEquals("Swim - Pool", populatedSongs!!.findSong(4)!!.songTitle)
             assertEquals(3, populatedSongs!!.findSong(4)!!.songRating)
             assertEquals("Hobby", populatedSongs!!.findSong(4)!!.songGenre)
 
-            //update song 5 with new information and ensure contents updated successfully
+            // update song 5 with new information and ensure contents updated successfully
             assertTrue(populatedSongs!!.updateSong(4, Song("Updating Song", 2, "College", false)))
             assertEquals("Updating Song", populatedSongs!!.findSong(4)!!.songTitle)
             assertEquals(2, populatedSongs!!.findSong(4)!!.songRating)
@@ -384,14 +389,14 @@ class SongAPITest {
 
         @Test
         fun `archiving a song that exists returns true and explicitifys`() {
-            //check song 5 exists and check the contents
+            // check song 5 exists and check the contents
             assertEquals(swim, populatedSongs!!.findSong(4))
             assertEquals("Swim - Pool", populatedSongs!!.findSong(4)!!.songTitle)
             assertEquals(3, populatedSongs!!.findSong(4)!!.songRating)
             assertEquals("Hobby", populatedSongs!!.findSong(4)!!.songGenre)
             assertFalse(populatedSongs!!.findSong(4)!!.isSongExplicit)
 
-            //explicitify song 5 and ensure contents updated successfully
+            // explicitify song 5 and ensure contents updated successfully
             assertTrue(populatedSongs!!.explicitifySong(4))
             assertEquals("Swim - Pool", populatedSongs!!.findSong(4)!!.songTitle)
             assertEquals(3, populatedSongs!!.findSong(4)!!.songRating)
@@ -435,8 +440,8 @@ class SongAPITest {
         fun numberOfStaleSongsCalculatedCorrectly() {
             assertEquals(5, populatedSongs!!.numberOfStaleSongs(0))
             assertEquals(5, populatedSongs!!.numberOfStaleSongs(1))
-            assertEquals(0, populatedSongs!!.numberOfStaleSongs(365*100))
-            assertEquals(0, populatedSongs!!.numberOfStaleSongs(365*50))
+            assertEquals(0, populatedSongs!!.numberOfStaleSongs(365 * 100))
+            assertEquals(0, populatedSongs!!.numberOfStaleSongs(365 * 50))
         }
 
         @Test
@@ -451,12 +456,12 @@ class SongAPITest {
 
         @Test
         fun `search songs by title returns no songs when no songs with that title exist`() {
-            //Searching a populated collection for a title that doesn't exist.
+            // Searching a populated collection for a title that doesn't exist.
             assertEquals(5, populatedSongs!!.numberOfSongs())
             val searchResults = populatedSongs!!.searchByTitle("no results expected")
             assertTrue(searchResults.isEmpty())
 
-            //Searching an empty collection
+            // Searching an empty collection
             assertEquals(0, emptySongs!!.numberOfSongs())
             assertTrue(emptySongs!!.searchByTitle("").isEmpty())
         }
@@ -465,18 +470,18 @@ class SongAPITest {
         fun `search songs by title returns songs when songs with that title exist`() {
             assertEquals(5, populatedSongs!!.numberOfSongs())
 
-            //Searching a populated collection for a full title that exists (case matches exactly)
+            // Searching a populated collection for a full title that exists (case matches exactly)
             var searchResults = populatedSongs!!.searchByTitle("Code App")
             assertTrue(searchResults.contains("Code App"))
             assertFalse(searchResults.contains("Test App"))
 
-            //Searching a populated collection for a partial title that exists (case matches exactly)
+            // Searching a populated collection for a partial title that exists (case matches exactly)
             searchResults = populatedSongs!!.searchByTitle("App")
             assertTrue(searchResults.contains("Code App"))
             assertTrue(searchResults.contains("Test App"))
             assertFalse(searchResults.contains("Swim - Pool"))
 
-            //Searching a populated collection for a partial title that exists (case doesn't match)
+            // Searching a populated collection for a partial title that exists (case doesn't match)
             searchResults = populatedSongs!!.searchByTitle("aPp")
             assertTrue(searchResults.contains("Code App"))
             assertTrue(searchResults.contains("Test App"))

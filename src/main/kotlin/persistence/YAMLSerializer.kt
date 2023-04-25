@@ -11,7 +11,6 @@ import models.Song
 import utils.SerializerUtils.isArrayList
 import java.io.File
 
-
 // https://www.mkammerer.de/blog/kotlin-and-yaml-part-2/
 class YAMLSerializer(val file: File) : Serializer {
 
@@ -50,13 +49,11 @@ class YAMLSerializer(val file: File) : Serializer {
     @Throws(Exception::class)
     override fun readSongs(): ArrayList<Song>? = readGeneric()
 
-
     @Throws(Exception::class)
     override fun writeSongs(obj: ArrayList<Song>) = writeGeneric(obj)
 
     @Throws(Exception::class)
     override fun readArtists(): ArrayList<Artist>? = readGeneric()
-
 
     @Throws(Exception::class)
     override fun writeArtists(obj: ArrayList<Artist>) = writeGeneric(obj)

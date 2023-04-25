@@ -1,7 +1,8 @@
+import controllers.ArtistAPI
 import controllers.SongAPI
+import models.Artist
 import models.Song
 import persistence.XMLSerializer
-import utils.SerializerUtils
 import utils.SerializerUtils.ldp
 import java.io.File
 
@@ -13,4 +14,13 @@ object TestUtils {
     fun swim() = Song("Swim - Pool", 3, "Hobby", false, ldp("2023-03-11T14:00"), ldp("2023-03-11T13:45"))
     fun populatedSongs() = SongAPI(XMLSerializer(File("songs.test.xml")))
     fun emptySongs() = SongAPI(XMLSerializer(File("songs.test.xml")))
+
+    fun michaelJackson() = Artist("Michael Jackson", ldp("1964-02-14T10:30"), listOf("Pop", "Rock", "Funk"))
+    fun acDC() = Artist("AC/DC", ldp("1973-02-14T10:30"), listOf("Rock", "Metal"))
+    fun eminem() = Artist("Eminem", ldp("1988-02-14T10:30"), listOf("Hip Hop", "Rap"))
+    fun gunsNRoses() = Artist("Guns N' Roses", ldp("1985-02-14T10:30"), listOf("Rock", "Metal"))
+    fun theBeatles() = Artist("The Beatles", ldp("1960-02-14T10:30"), listOf("Rock", "Pop"))
+
+    fun populatedArtists() = ArtistAPI(XMLSerializer(File("artists.test.xml")))
+    fun emptyArtists() = ArtistAPI(XMLSerializer(File("artists.test.xml")))
 }
