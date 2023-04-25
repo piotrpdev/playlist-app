@@ -36,9 +36,9 @@ Then you can do the following:
 
 - Run the `MainKt` or `MainKt (Debug)` run script in IntelliJ IDEA
 
-> Run with `-Dorg.slf4j.simpleLogger.defaultLogLevel=DEBUG` or `MainKt (Debug)` to see debug logs
+> **Note**: Run with `-Dorg.slf4j.simpleLogger.defaultLogLevel=DEBUG` or `MainKt (Debug)` to see debug logs
 
-> Warning: If not running one of the provided scripts, you need to manually use the `--add-opens=java.base/java.util=ALL-UNNAMED` flag for XStream to work.
+> **Warning**: If not running one of the provided scripts, you need to manually use the `--add-opens=java.base/java.util=ALL-UNNAMED` flag for XStream to work.
 
 ## Authors
 
