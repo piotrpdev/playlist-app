@@ -2,6 +2,7 @@ import com.jakewharton.picnic.TextBorder
 import com.jakewharton.picnic.renderText
 import controllers.ArtistAPI
 import controllers.SongAPI
+import models.Artist
 import models.Song
 import mu.KotlinLogging
 import persistence.XMLSerializer
@@ -499,6 +500,200 @@ fun runSongMenu() {
     } while (true)
 }
 
+fun generateArtist(old: Artist? = null): Artist {
+    logger.debug { "generateArtist() function invoked" }
+
+    val artistName: String = getValidPropertyValue("artistName", old?.name)
+    val artistFoundedDate: LocalDateTime = getValidPropertyValue("artistFoundedDate", old?.foundedDate)
+    val artistGenres: List<String> = getValidPropertyValue("artistGenres", old?.genres)
+
+    return Artist(artistName, artistFoundedDate, artistGenres)
+}
+
+internal fun getArtistByIndex(): Artist? {
+    logger.debug { "Trying to get artist by index" }
+
+    if (artistAPI.numberOfArtists() == 0) {
+        println("No artists found.")
+        return null
+    }
+
+    printAllArtists()
+
+    val allArtists = artistAPI.findAll()
+
+    val artistIndex: Int = getValidPropertyValue("artistIndex", customValidator = { artistAPI.isValidIndex(it) })
+
+    val artist = allArtists[artistIndex]
+
+    logger.debug { "Artist found: $artist" }
+    logger.debug { "Displaying artist" }
+    println("\nThe following artist was found:")
+    println(artistAPI.generateArtistTable(artist).renderText(border = TextBorder.ROUNDED))
+
+    return artist
+}
+
+fun getFilteredArtists(artistList: MutableList<Artist>): MutableList<Artist>? {
+    logger.debug { "Trying to get filtered artists" }
+
+    val input: Boolean = getValidPropertyValue(
+        "yesNo",
+        customPrompt = "Do you want to filter the artists? (y/n): "
+    )
+
+    if (!input) {
+        logger.debug { "Not filtering artists" }
+        return artistList
+    }
+
+    var filtering = true
+    while (filtering) {
+        print("How do you want to filter the artists? (1 - Name, 2 - Founded Date, 3 - Genres): ")
+        when (readln().toIntOrNull()) {
+            1 -> {
+                val artistName: String = getValidPropertyValue("artistName")
+                artistList.removeIf { !it.name.lowercase().contains(artistName.lowercase()) }
+            }
+
+            2 -> {
+                val artistFoundedDate: LocalDateTime = getValidPropertyValue("artistFoundedDate")
+                artistList.removeIf { it.foundedDate.compareTo(artistFoundedDate) != 0 }
+            }
+
+            3 -> {
+                val artistGenres: List<String> = getValidPropertyValue("artistGenres")
+                artistList.removeIf { !it.genres.containsAll(artistGenres) }
+            }
+
+            else -> {
+                println("Error: invalid option. Please enter a valid option.")
+                continue
+            }
+        }
+
+        val filterAgain: Boolean = getValidPropertyValue(
+            "yesNo",
+            customPrompt = "Do you want to filter the artists again? (y/n): "
+        )
+
+        if (!filterAgain) {
+            filtering = false
+        }
+
+        println()
+    }
+
+    logger.debug { "Returning filtered artist list (might be empty)." }
+    return artistList.ifEmpty { null }
+}
+
+fun getSortedArtists(artistList: MutableList<Artist> = artistAPI.findAll()): MutableList<Artist> {
+    logger.debug { "Trying to get sorted artists" }
+
+    val input: Boolean = getValidPropertyValue(
+        "yesNo",
+        customPrompt = "Do you want to sort the artists? (y/n): "
+    )
+
+    if (!input) {
+        logger.debug { "Not sorting artists" }
+        return artistList
+    }
+
+    print("How do you want to sort the artists? (1 - Name, 2 - Founded Date): ")
+
+    when (readln().toIntOrNull()) {
+        1 -> artistList.sortBy { it.name }
+        2 -> artistList.sortBy { it.foundedDate }
+        else -> {
+            println("Error: Invalid option. Please enter a valid option.")
+            return getSortedArtists()
+        }
+    }
+
+    logger.debug { "Returning sorted artist list (might be empty)." }
+    return artistList
+}
+
+/**
+ * Adds a new artist to the ArtistAPI using user input for properties.
+ */
+fun addArtist() {
+    logger.debug { "addArtist() function invoked" }
+
+    val artist = generateArtist()
+
+    logger.debug { "Adding artist: $artist" }
+    artistAPI.add(artist)
+
+    println("\nThe following artist was added successfully:\n")
+    println(artistAPI.generateArtistTable(artistAPI.findUsingArtist(artist) ?: artist).renderText(border = TextBorder.ROUNDED))
+}
+
+/**
+ * Displays a selected artist based on their index.
+ */
+fun viewArtist() {
+    logger.debug { "viewArtist() function invoked" }
+
+    getArtistByIndex() ?: return
+}
+
+/**
+ * Updates an existing artist with new properties based on user input.
+ */
+fun updateArtist() {
+    logger.debug { "updateArtist() function invoked" }
+
+    val artist = getArtistByIndex() ?: return
+
+    println("\nPlease enter the new details for the artist (Enter nothing to keep previous value):")
+
+    val updatedArtist = generateArtist(artist)
+
+    logger.debug { "Artist found, updating artist" }
+    artistAPI.updateArtist(artistAPI.findIndexUsingArtist(artist), updatedArtist)
+
+    println("\nThe artist was updated successfully:\n")
+    println(artistAPI.generateArtistTable(updatedArtist).renderText(border = TextBorder.ROUNDED))
+}
+
+/**
+ * Deletes an artist based on their index.
+ */
+fun deleteArtist() {
+    logger.debug { "deleteArtist() function invoked" }
+
+    if (artistAPI.numberOfArtists() == 0) {
+        println("No artists found.")
+        return
+    }
+
+    printAllArtists()
+
+    val artistIndex: Int = getValidPropertyValue("artistIndex", customPrompt = "Enter artist index to delete: ", customValidator = { artistAPI.isValidIndex(it) })
+
+    // pass the index of the artist to ArtistAPI for deleting and check for success.
+    val artistToDelete = artistAPI.deleteArtist(artistIndex)
+    if (artistToDelete != null) {
+        println("Delete Successful! Deleted artist: ${artistToDelete.name}")
+    } else {
+        println("Delete NOT Successful")
+    }
+}
+
+fun searchArtists() {
+    logger.debug { "searchArtists() function invoked" }
+
+    val artistList = artistAPI.findAll()
+    val filteredArtistList = getFilteredArtists(artistList) ?: return
+    val sortedArtistList = getSortedArtists(filteredArtistList)
+
+    println("Here are the artists you wanted to view:")
+    println(artistAPI.generateMultipleArtistsTable(sortedArtistList).renderText(border = TextBorder.ROUNDED))
+}
+
 /**
  * Prints all artists in a tabular format with rounded borders.
  */
@@ -561,11 +756,11 @@ fun runArtistMenu() {
 
     do {
         when (val option = artistMenu()) {
-//            1 -> addArtist()
-//            2 -> viewArtist()
-//            3 -> updateArtist()
-//            4 -> deleteArtist()
-//            5 -> searchArtists()
+            1 -> addArtist()
+            2 -> viewArtist()
+            3 -> updateArtist()
+            4 -> deleteArtist()
+            5 -> searchArtists()
             6 -> println(artistAPI.listAllArtists())
             7 -> loadArtists()
             8 -> saveArtists()

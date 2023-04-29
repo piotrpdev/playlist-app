@@ -2,6 +2,7 @@ package utils
 
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
+import java.time.LocalDateTime
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
@@ -62,6 +63,19 @@ class ValidatorUtilsTest {
     }
 
     @Test
+    fun testArtistGenresIsValid() {
+        assertTrue(ValidatorUtils.artistGenresIsValid("Rock"))
+        assertTrue(ValidatorUtils.artistGenresIsValid("Rock,Pop"))
+        assertTrue(ValidatorUtils.artistGenresIsValid("Rock, Pop"))
+        assertFalse(ValidatorUtils.artistGenresIsValid(null))
+        assertFalse(ValidatorUtils.artistGenresIsValid(""))
+        assertFalse(ValidatorUtils.artistGenresIsValid("Rock,"))
+        assertFalse(ValidatorUtils.artistGenresIsValid("Rock, "))
+        assertFalse(ValidatorUtils.artistGenresIsValid("Rock, Pop,"))
+        assertFalse(ValidatorUtils.artistGenresIsValid("Rock, Pop, "))
+    }
+
+    @Test
     fun testPropertyNameToPrompt() {
         assertEquals("Enter song title: ", ValidatorUtils.propertyNameToPrompt("songTitle", null))
         assertEquals(
@@ -94,5 +108,15 @@ class ValidatorUtilsTest {
         assertEquals(ValidatorUtils::stringIsValid, ValidatorUtils.propertyNameToValidator("songTitle"))
         assertEquals(ValidatorUtils::localDateTimeIsValid, ValidatorUtils.propertyNameToValidator("updatedAt"))
         assertThrows(IllegalArgumentException::class.java) { ValidatorUtils.propertyNameToValidator("invalidPropertyName") }
+    }
+
+    @Test
+    fun testStringToGeneric() {
+        assertEquals("string", ValidatorUtils.stringToGeneric("string", String::class))
+        assertEquals(1, ValidatorUtils.stringToGeneric("1", Int::class))
+        assertEquals(true, ValidatorUtils.stringToGeneric("y", Boolean::class))
+        assertEquals(LocalDateTime.parse("2023-03-09T11:30:00"), ValidatorUtils.stringToGeneric("2023-03-09T11:30:00", LocalDateTime::class))
+        assertEquals(listOf("Rock", "Pop"), ValidatorUtils.stringToGeneric("Rock, Pop", List::class))
+        assertThrows(IllegalArgumentException::class.java) { ValidatorUtils.stringToGeneric("string", Any::class) }
     }
 }
