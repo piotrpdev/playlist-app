@@ -1,0 +1,500 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>SongAPI</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+const savedDarkMode = storage ? JSON.parse(storage) : false
+if(savedDarkMode === true){
+    document.getElementsByTagName("html")[0].classList.add("theme-dark")
+}</script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script><link href="../../../styles/style.css" rel="Stylesheet"><link href="../../../styles/jetbrains-mono.css" rel="Stylesheet"><link href="../../../styles/main.css" rel="Stylesheet"><link href="../../../styles/prism.css" rel="Stylesheet"><link href="../../../styles/logo-styles.css" rel="Stylesheet"><script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script><script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script><script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script><script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script><script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>  </head>
+  <body>
+    <div class="navigation-wrapper" id="navigation-wrapper">
+      <div id="leftToggler"><span class="icon-toggler"></span></div>
+      <div class="library-name"><a href="../../../index.html">songs-app</a></div>
+      <div>1.0</div>
+      <div class="pull-right d-flex"><button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+      </div>
+    </div>
+    <div id="container">
+      <div id="leftColumn">
+        <div id="sideMenu"></div>
+      </div>
+      <div id="main">
+        <div class="main-content" id="content" pageIds="songs-app::controllers/SongAPI///PointingToDeclaration//769193423">
+          <div class="breadcrumbs"><a href="../../../index.html">songs-app</a>/<a href="../index.html">controllers</a>/<a href="index.html">SongAPI</a></div>
+          <div class="cover ">
+            <h1 class="cover"><span>Song</span><wbr></wbr><span><span>API</span></span></h1>
+            <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">SongAPI</a><span class="token punctuation">(</span>serializerType<span class="token operator">: </span><a href="../../persistence/-serializer/index.html">Serializer</a><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">A class representing a Song API that allows for managing songs using a provided serializer.</p></div></div>
+          </div>
+          <div class="tabbedcontent">
+            <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Parameters">Parameters</button></div>
+            <div class="tabs-section-body">
+              <h2 class="">Parameters</h2>
+              <div data-togglable="Parameters">
+                <div class="platform-hinted WithExtraAttributes" data-platform-hinted="data-platform-hinted" data-togglable="Parameters"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div data-togglable="Parameters"><div class="table" data-togglable="Parameters"><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span>serializer</span><wbr></wbr><span><span>Type</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The serializer used for storing and retrieving songs.</p></div></div></div></div></div></div></div></div></div>
+              </div>
+              <h2 class="tabbedcontent">Constructors</h2>
+              <div class="table" data-togglable="Constructors"><a data-name="-1495207%2FConstructors%2F769193423" anchor-label="SongAPI" id="-1495207%2FConstructors%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue TabbedContent">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="-song-a-p-i.html"><span>Song</span><wbr></wbr><span><span>API</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1495207%2FConstructors%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="-song-a-p-i.html"><span class="token function">SongAPI</span></a><span class="token punctuation">(</span>serializerType<span class="token operator">: </span><a href="../../persistence/-serializer/index.html">Serializer</a><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2 class="">Functions</h2>
+              <div class="table" data-togglable="Functions"><a data-name="915703179%2FFunctions%2F769193423" anchor-label="add" id="915703179%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="add.html"><span><span>add</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="915703179%2FFunctions%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="add.html"><span class="token function">add</span></a><span class="token punctuation">(</span>song<span class="token operator">: </span><a href="../../models/-song/index.html">Song</a><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Adds a song to the list of songs.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="569324569%2FFunctions%2F769193423" anchor-label="deleteSong" id="569324569%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="delete-song.html"><span>delete</span><wbr></wbr><span><span>Song</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="569324569%2FFunctions%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="delete-song.html"><span class="token function">deleteSong</span></a><span class="token punctuation">(</span>indexToDelete<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../models/-song/index.html">Song</a><span class="token operator">?</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Deletes a song from the list of songs by index.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="793161952%2FFunctions%2F769193423" anchor-label="explicitifySong" id="793161952%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="explicitify-song.html"><span>explicitify</span><wbr></wbr><span><span>Song</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="793161952%2FFunctions%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="explicitify-song.html"><span class="token function">explicitifySong</span></a><span class="token punctuation">(</span>indexToUpdate<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Explicitifies a song at a given index.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-7242121%2FFunctions%2F769193423" anchor-label="findAll" id="-7242121%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="find-all.html"><span>find</span><wbr></wbr><span><span>All</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-7242121%2FFunctions%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="find-all.html"><span class="token function">findAll</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../models/-song/index.html">Song</a><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Retrieves all songs as a mutable list.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1698340110%2FFunctions%2F769193423" anchor-label="findIndexUsingSong" id="1698340110%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="find-index-using-song.html"><span>find</span><wbr></wbr><span>Index</span><wbr></wbr><span>Using</span><wbr></wbr><span><span>Song</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1698340110%2FFunctions%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="find-index-using-song.html"><span class="token function">findIndexUsingSong</span></a><span class="token punctuation">(</span>song<span class="token operator">: </span><a href="../../models/-song/index.html">Song</a><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Finds the index of a song in the list of songs.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1614442443%2FFunctions%2F769193423" anchor-label="findSong" id="1614442443%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="find-song.html"><span>find</span><wbr></wbr><span><span>Song</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1614442443%2FFunctions%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="find-song.html"><span class="token function">findSong</span></a><span class="token punctuation">(</span>index<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../models/-song/index.html">Song</a><span class="token operator">?</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Retrieves a song at a given index.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-566543894%2FFunctions%2F769193423" anchor-label="findUsingSong" id="-566543894%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="find-using-song.html"><span>find</span><wbr></wbr><span>Using</span><wbr></wbr><span><span>Song</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-566543894%2FFunctions%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="find-using-song.html"><span class="token function">findUsingSong</span></a><span class="token punctuation">(</span>song<span class="token operator">: </span><a href="../../models/-song/index.html">Song</a><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../models/-song/index.html">Song</a><span class="token operator">?</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Finds a song in the list of songs.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-473134813%2FFunctions%2F769193423" anchor-label="generateAllSongsTable" id="-473134813%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="generate-all-songs-table.html"><span>generate</span><wbr></wbr><span>All</span><wbr></wbr><span>Songs</span><wbr></wbr><span><span>Table</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-473134813%2FFunctions%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="generate-all-songs-table.html"><span class="token function">generateAllSongsTable</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.jakewharton.picnic/Table///PointingToDeclaration/">Table</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Generates a table containing all songs' information.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="223021195%2FFunctions%2F769193423" anchor-label="generateMultipleSongsTable" id="223021195%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="generate-multiple-songs-table.html"><span>generate</span><wbr></wbr><span>Multiple</span><wbr></wbr><span>Songs</span><wbr></wbr><span><span>Table</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="223021195%2FFunctions%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="generate-multiple-songs-table.html"><span class="token function">generateMultipleSongsTable</span></a><span class="token punctuation">(</span>songs<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../models/-song/index.html">Song</a><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.jakewharton.picnic/Table///PointingToDeclaration/">Table</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Generates a table containing multiple songs' information.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-505826130%2FFunctions%2F769193423" anchor-label="generateSongTable" id="-505826130%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="generate-song-table.html"><span>generate</span><wbr></wbr><span>Song</span><wbr></wbr><span><span>Table</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-505826130%2FFunctions%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="generate-song-table.html"><span class="token function">generateSongTable</span></a><span class="token punctuation">(</span>song<span class="token operator">: </span><a href="../../models/-song/index.html">Song</a><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.jakewharton.picnic/Table///PointingToDeclaration/">Table</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Generates a table containing a single song's information.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1086494867%2FFunctions%2F769193423" anchor-label="isValidIndex" id="-1086494867%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="is-valid-index.html"><span>is</span><wbr></wbr><span>Valid</span><wbr></wbr><span><span>Index</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1086494867%2FFunctions%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="is-valid-index.html"><span class="token function">isValidIndex</span></a><span class="token punctuation">(</span>index<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Determines if a given index is valid in the list of songs.</p></div><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="is-valid-index.html"><span class="token function">isValidIndex</span></a><span class="token punctuation">(</span>index<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="2003917536%2FFunctions%2F769193423" anchor-label="listAllSongs" id="2003917536%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="list-all-songs.html"><span>list</span><wbr></wbr><span>All</span><wbr></wbr><span><span>Songs</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2003917536%2FFunctions%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="list-all-songs.html"><span class="token function">listAllSongs</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Lists all songs in a formatted string.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-2118748813%2FFunctions%2F769193423" anchor-label="listExplicitSongs" id="-2118748813%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="list-explicit-songs.html"><span>list</span><wbr></wbr><span>Explicit</span><wbr></wbr><span><span>Songs</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2118748813%2FFunctions%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="list-explicit-songs.html"><span class="token function">listExplicitSongs</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Lists all explicit songs in a formatted string.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1612912223%2FFunctions%2F769193423" anchor-label="listImportantSongs" id="-1612912223%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="list-important-songs.html"><span>list</span><wbr></wbr><span>Important</span><wbr></wbr><span><span>Songs</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1612912223%2FFunctions%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="list-important-songs.html"><span class="token function">listImportantSongs</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Lists songs with a rating of 5.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-73401076%2FFunctions%2F769193423" anchor-label="listSafeSongs" id="-73401076%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="list-safe-songs.html"><span>list</span><wbr></wbr><span>Safe</span><wbr></wbr><span><span>Songs</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-73401076%2FFunctions%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="list-safe-songs.html"><span class="token function">listSafeSongs</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Lists all safe (non-explicit) songs in a formatted string.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="69360174%2FFunctions%2F769193423" anchor-label="listSongsBySelectedRating" id="69360174%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="list-songs-by-selected-rating.html"><span>list</span><wbr></wbr><span>Songs</span><wbr></wbr><span>By</span><wbr></wbr><span>Selected</span><wbr></wbr><span><span>Rating</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="69360174%2FFunctions%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="list-songs-by-selected-rating.html"><span class="token function">listSongsBySelectedRating</span></a><span class="token punctuation">(</span>rating<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Lists all songs with a given rating in a formatted string.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-230730122%2FFunctions%2F769193423" anchor-label="listStaleSongs" id="-230730122%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="list-stale-songs.html"><span>list</span><wbr></wbr><span>Stale</span><wbr></wbr><span><span>Songs</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-230730122%2FFunctions%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="list-stale-songs.html"><span class="token function">listStaleSongs</span></a><span class="token punctuation">(</span>days<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Lists all songs that haven't been updated in a given number of days.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1037261927%2FFunctions%2F769193423" anchor-label="loadSongs" id="1037261927%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="load-songs.html"><span>load</span><wbr></wbr><span><span>Songs</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1037261927%2FFunctions%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="load-songs.html"><span class="token function">loadSongs</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Loads the songs from the serializer.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="2012881237%2FFunctions%2F769193423" anchor-label="numberOfExplicitSongs" id="2012881237%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="number-of-explicit-songs.html"><span>number</span><wbr></wbr><span>Of</span><wbr></wbr><span>Explicit</span><wbr></wbr><span><span>Songs</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2012881237%2FFunctions%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="number-of-explicit-songs.html"><span class="token function">numberOfExplicitSongs</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Retrieves the number of explicit songs.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1913567743%2FFunctions%2F769193423" anchor-label="numberOfImportantSongs" id="1913567743%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="number-of-important-songs.html"><span>number</span><wbr></wbr><span>Of</span><wbr></wbr><span>Important</span><wbr></wbr><span><span>Songs</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1913567743%2FFunctions%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="number-of-important-songs.html"><span class="token function">numberOfImportantSongs</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Retrieves the number of songs with a rating of 1.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1003022830%2FFunctions%2F769193423" anchor-label="numberOfSafeSongs" id="1003022830%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="number-of-safe-songs.html"><span>number</span><wbr></wbr><span>Of</span><wbr></wbr><span>Safe</span><wbr></wbr><span><span>Songs</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1003022830%2FFunctions%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="number-of-safe-songs.html"><span class="token function">numberOfSafeSongs</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Retrieves the number of safe (non-explicit) songs.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="898409473%2FFunctions%2F769193423" anchor-label="numberOfSongs" id="898409473%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="number-of-songs.html"><span>number</span><wbr></wbr><span>Of</span><wbr></wbr><span><span>Songs</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="898409473%2FFunctions%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="number-of-songs.html"><span class="token function">numberOfSongs</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Retrieves the total number of songs.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="987125483%2FFunctions%2F769193423" anchor-label="numberOfSongsByRating" id="987125483%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="number-of-songs-by-rating.html"><span>number</span><wbr></wbr><span>Of</span><wbr></wbr><span>Songs</span><wbr></wbr><span>By</span><wbr></wbr><span><span>Rating</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="987125483%2FFunctions%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="number-of-songs-by-rating.html"><span class="token function">numberOfSongsByRating</span></a><span class="token punctuation">(</span>rating<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Retrieves the number of songs with a given rating.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="408873044%2FFunctions%2F769193423" anchor-label="numberOfStaleSongs" id="408873044%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="number-of-stale-songs.html"><span>number</span><wbr></wbr><span>Of</span><wbr></wbr><span>Stale</span><wbr></wbr><span><span>Songs</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="408873044%2FFunctions%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="number-of-stale-songs.html"><span class="token function">numberOfStaleSongs</span></a><span class="token punctuation">(</span>days<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Retrieves the number of songs that haven't been updated in a given number of days.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-182268422%2FFunctions%2F769193423" anchor-label="removeMultipleSongs" id="-182268422%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="remove-multiple-songs.html"><span>remove</span><wbr></wbr><span>Multiple</span><wbr></wbr><span><span>Songs</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-182268422%2FFunctions%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="remove-multiple-songs.html"><span class="token function">removeMultipleSongs</span></a><span class="token punctuation">(</span>songList<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../models/-song/index.html">Song</a><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="/&amp;lt;ERROR CLASS&amp;gt;///PointingToDeclaration/">&lt;ERROR CLASS&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Removes multiple songs from the list of songs.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1017557762%2FFunctions%2F769193423" anchor-label="searchByTitle" id="-1017557762%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="search-by-title.html"><span>search</span><wbr></wbr><span>By</span><wbr></wbr><span><span>Title</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1017557762%2FFunctions%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="search-by-title.html"><span class="token function">searchByTitle</span></a><span class="token punctuation">(</span>searchString<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="/&amp;lt;ERROR CLASS&amp;gt;///PointingToDeclaration/">&lt;ERROR CLASS&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Searches for songs with a title containing a given search string.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="537223346%2FFunctions%2F769193423" anchor-label="seedSongs" id="537223346%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="seed-songs.html"><span>seed</span><wbr></wbr><span><span>Songs</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="537223346%2FFunctions%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="seed-songs.html"><span class="token function">seedSongs</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Seeds the songs with a predefined set of songs.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1532703074%2FFunctions%2F769193423" anchor-label="storeSongs" id="-1532703074%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="store-songs.html"><span>store</span><wbr></wbr><span><span>Songs</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1532703074%2FFunctions%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="store-songs.html"><span class="token function">storeSongs</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Stores the songs using the serializer.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1925543611%2FFunctions%2F769193423" anchor-label="updateSong" id="-1925543611%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex">
+                        <div><a href="update-song.html"><span>update</span><wbr></wbr><span><span>Song</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1925543611%2FFunctions%2F769193423"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="update-song.html"><span class="token function">updateSong</span></a><span class="token punctuation">(</span>indexToUpdate<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span>song<span class="token operator">: </span><a href="../../models/-song/index.html">Song</a><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Updates a song at a given index with new song data.</p></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span></div>
+      </div>
+    </div>
+  </body>
+</html>
+
